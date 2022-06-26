@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
+* {
+    margin: 0%;
+    padding: 0%;
+    border: 0;
+}
+
+.header {
+    background-image: url('/images/Header.png');
+    margin: 0%;
+    padding: 0%;
+    border: 0;
+    height: 305px;
+    width: 100%;
+    background-size: 1451px 305px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+
+.title {
+    font: 78px Poppins, sans-serif;
+    font-weight: 100;
+    margin: auto;
+    color: white;
+    text-align: center;
+    padding-top: 70px;
+    width: 50%;
+}
+
+.port {
+    font: 78px Poppins, sans-serif;
+    color: #66FCF1;
+    font-weight: 900;
+}
+
+.desc {
+    font: 20px Poppins, sans-serif;
+    color: white;
+    font-weight: 300;
+    text-align: center;
+}
+
+#formwrap {
+    font: 16px Poppins, sans-serif;
+    color: black;
+    font-weight: 300px;
+    text-align: center;
+    padding-top: 70px;
+}
+
+#username {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    padding-left: 2px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#password {
+    border-style: solid;
+    border-width: 1px;
+    border-color: black;
+    padding-left: 2px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#submitl {
+    background-color: #66FCF1;
+    margin-top: 10px;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font: 14px Poppins, sans-serif;
+    color: #1F2833;
+    font-weight: 400px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#submitl:hover {
+    background-color: #1F2833;
+    margin-top: 10px;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font: 14px Poppins, sans-serif;
+    color: #66FCF1;
+    font-weight: 400px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#guest {
+    background-color: #66FCF1;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font: 14px Poppins, sans-serif;
+    color: #1F2833;
+    font-weight: 400px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#guest:hover {
+    background-color: #1F2833;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font: 14px Poppins, sans-serif;
+    color: #66FCF1;
+    font-weight: 400px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.footer {
+    position: absolute;
+    background-image: url('/images/Footer.png');
+    margin: 0%;
+    margin-top: 80px;
+    padding: 0%;
+    border: 0;
+    height: 305px;
+    width: 100%;
+    background-size: 1451px 305px;
+    padding-top: 60px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19)
+}
+
+.query {
+    font: 48px Poppins, sans-serif;
+    font-weight: 300;
+    margin-top: 0px;
+    margin-left: 60px;
+    color: white;
+    text-align: left;
+    width: 50%;
+}
+
+.account {
+    font: 48px Poppins, sans-serif;
+    color: #66FCF1;
+    font-weight: 800;
+}
+
+.details {
+    font: 20px Poppins, sans-serif;
+    color: white;
+    font-weight: 200;
+    margin-top: 0px;
+    margin-left: 60px;
+    text-align: left;
+    width: 50%;
+}
+
+#register {
+    background-color: #66FCF1;
+    margin-top: 30px;
+    margin-left: 60px;
+    text-align: left;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font: 24px Poppins, sans-serif;
+    color: #1F2833;
+    font-weight: 600;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#register:hover {
+    background-color: #1F2833;
+    margin-top: 30px;
+    margin-left: 46px;
+    text-align: left;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font: 28px Poppins, sans-serif;
+    color: #66FCF1;
+    font-weight: 600;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}

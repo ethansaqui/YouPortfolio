@@ -1,0 +1,605 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+*{
+    margin: 0px;
+    box-sizing: border-box;
+}
+.top-page {
+    z-index: 10;
+    position: fixed;
+    width: 100%;
+    height: 65px;
+    background:#1F2833;
+    text-align: center;
+    display: inline-block;
+}
+
+.nav-bar-profile {
+    width: 50px;
+    height: 50px;
+    float: right;
+    margin-right: 2vw;
+    position: relative;
+}
+
+.nav-bar-pfp {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: #000000;
+}
+
+#YouPortfolio {
+    font-size: 2vw;
+    position: absolute;
+    left: 4%;
+    top: 8px; 
+    font-family: Poppins;
+    user-select: none;
+    font-weight: 100;
+    color: white;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+@media screen and (max-width:767px) {
+    #YouPortfolio {
+    font-size: 2vw;
+    position: absolute;
+    left: 4%;
+    top: 8px; 
+    font-family: Poppins;
+    user-select: none;
+    font-weight: 100;
+    color: white;
+    padding: 10px;
+    }
+
+    ul {
+        padding-left: 10px;
+    }
+}
+
+
+#You {
+    font-family: Poppins, sans-serif;
+}
+
+#Portfolio {
+    font-weight: 800;
+    color: #66FCF1 ;
+}
+
+#upload, #logout{
+    position: fixed;
+    width: 117px;
+    height: 27px;
+    right: 300;
+    top: 22px;
+    background: #66FCF1;
+    border-radius: 35px;
+    font: 14px Poppins, sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+    color: #FFFFFF;
+    z-index: 2;
+}
+
+#upload:hover, #logout:hover {
+    cursor: pointer;
+    background-color: #1F2833;
+    color: #66FCF1;
+    font-weight: 400px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+#logout {
+    right: 100;
+}
+
+#upload:hover {
+    cursor: pointer;
+    background-color: #1F2833;
+    color: #66FCF1;
+    font-weight: 400px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.popup .overlay{
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 3;
+    display: none;
+}
+
+.popup .Content{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 849px;
+    height: 572px;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 300ms ease-in-out;
+    background-color:#1F2833;
+    z-index: 4;
+}
+
+.popup .EditContent{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 849px;
+    height: 403px;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 300ms ease-in-out;
+    background-color:#1F2833;
+    z-index: 4;
+}
+.popup .PFPcontent{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 849px;
+    height: 572px;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 300ms ease-in-out;
+    background-color:#1F2833;
+    z-index: 4;
+}
+
+.EditContent #EditHeader{
+    position: absolute;
+    left: 39%;
+    top: 7%;
+    font-size: 30px;
+    font-family: Poppins;
+    color: #66FCF1;
+}
+
+.EditContent #CaptionBox input[type=caption]{
+    position: absolute;
+    width: 814px;
+    height: 233px;
+    left: 18px;
+    top: 92px;
+    background: white; 
+}
+.popup.active .overlay{
+    display: block;
+}
+
+.popup.active .Content{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup.active .EditContent{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.popup.active .PFPcontent{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.PFPcontent #ChoosePhoto{
+    position: absolute;
+    top: 420px;
+    left: 17px;
+
+}
+.UploadBox{
+    position: absolute;
+    width: 815px;
+    height: 382px;
+    left: 17px;
+    top: 15px; 
+    background: white;
+}
+
+.UploadBox img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+#CaptionBox input[type=caption]{
+    position: absolute;
+    width: 814px;
+    height: 89px;
+    left: 18px;
+    top: 419px;
+    background: white; 
+}
+
+#ConfirmUpload{
+    position: absolute;
+    left: 196px;
+    top: 530px;
+    background-color: #66FCF1;
+    border-radius: 35px;
+    width: 117px;
+    height: 23px;  
+}
+#Cancel{
+    position: absolute;
+    left: 513px;
+    top: 530px;
+    background-color: #66FCF1;
+    border-radius: 35px;
+    width: 117px;
+    height: 23px;  
+}
+.EditContent #ConfirmUpload{
+    left: 196px;
+    top: 355px;
+}
+.EditContent #Cancel{
+    left: 513px;
+    top: 355px;
+}
+
+#Cancel:hover {
+    cursor: pointer;
+    background-color: #1F2833;
+    color: #66FCF1;
+    font-weight: 400px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#ConfirmUpload:hover {
+    cursor: pointer;
+    background-color: #1F2833;
+    color: #66FCF1;
+    font-weight: 400px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.searchbar {
+    text-align: center;
+    padding-top: 10px;
+}
+
+.searchbar input[type=search] {
+    position: absolute;
+    height: 36px;
+    width: 20vw;
+    left: 40vw;
+    top: 14px;
+}
+
+.coverPhoto{
+    position: absolute;
+    width: 100%;
+    height: 331px;
+    left: -1px;
+    top: 64px;
+    background-color: aquamarine;
+}
+.coverPhoto img{
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+}
+
+.profilePicture img{
+    position: absolute;
+    width: 190px;
+    height: 186px;
+    top: 290px;
+    left: 4%;
+    border-radius: 50%;
+    background-color: white;
+    z-index: 2;
+}
+.ChangePFP {
+    position: absolute;
+    width: 190px;
+    height: 186px;
+    top: 290px;
+    left: 4%;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 3;
+    visibility: hidden;
+}
+.profilePicture:hover .ChangePFP{
+    visibility: visible;
+}
+.PFPButton {
+    position: absolute;
+    top: 88px;
+    left: 30%;
+    height: 20px;
+    width: 74px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid white;
+    font-family: poppins;
+    font-weight: 400px;
+}
+.PFPButton:hover{
+    cursor: pointer;
+}
+
+.userBanner{
+    position: absolute;
+    width: 100%;
+    height: 137px;
+    top: 396px;
+    background-color: #1F2833;
+}
+#User{
+    position:absolute;
+    font-size: 30px;
+    font-family: poppins;
+    left: 17%;
+    color: white;
+    width: 280px;
+    height: 45px;
+}
+#followers1{
+    position: absolute;
+    width: 125px;
+    height: 38px;
+    left: 37%;
+    top: 21px;
+    font-size: 15px;
+    font-family: poppins;
+    font-weight: 400;
+    line-height: 22px;
+}
+#followercount{
+    color: white;
+}
+#followers{
+    color: #66FCF1;
+}
+#following1{
+    position: absolute;
+    top: 21px;
+    left: 47%;
+    width: 427px;
+    height: 38px;
+    font-size: 15px;
+    font-family: poppins;
+    font-weight: 400;
+    line-height: 22px;
+}
+#followingcount{
+    color: white;
+}
+#following{
+    color: #66FCF1;
+}
+#followButton{
+    position: absolute;
+    width: 117px;
+    height: 23px;
+    left: 56%;
+    top: 21px;
+    background-color: #66FCF1;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font: 14px Poppins, sans-serif;
+    font: weight 400;
+    text-align: center;
+    color: #1F2833;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#followButton:hover {
+    background-color: #1F2833;
+    font: 14px Poppins, sans-serif;
+    color: #66FCF1;
+    font-weight: 400px;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+#CommissionBox{
+    position: absolute;
+    width: 178px;
+    height: 75px;
+    left: 87%;
+    top: 50px;
+    background-color: #66FCF1;
+}
+#Details1{
+    position: absolute;
+    left: 2px;
+    top: 5px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+}
+#email:hover{
+    border-bottom-style: solid;
+    color: #1F2833;
+}
+
+#Bio{
+    position: absolute;
+    width: 565px;
+    height: 55px;
+    left: 17%;
+    top: 50px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 22px;
+    color: #FFFFFF;
+}
+
+.FeelingBar img{
+    position: absolute;
+    width: 86px;
+    height: 84px;
+    left: 22%;
+    top: 577px;
+    border: 4px solid black;
+    border-radius: 50%;
+
+}
+.FeelingBar input{
+    position: absolute;
+    width: 837px;
+    height: 89px;
+    left: 29%;
+    top: 574px;
+    background-color: white;
+    border: 1px solid black;
+    box-sizing: border-box;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+#UserWorks{
+    position: absolute;
+    width: 547px;
+    height: 54px;
+    left: 5%;
+    top: 713px;
+    font-family: Poppins;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 54px;
+}
+#Username{
+    color: #1F2833;
+}
+#Works{
+    color: #66FCF1;
+}
+.Projects *{
+    width: 263px;
+    height: 253px;
+    background-color: gray;
+    margin-bottom: 10px;
+}
+#work1{
+    position: absolute;
+    top: 789px;
+    left: 5%;
+}
+#work1 img{
+    object-fit: cover;
+}
+#work2{
+    position: absolute;
+    top: 789px;
+    left: 24%; 
+}
+#work2 img{
+    object-fit: cover;
+}
+#work3{
+    position: absolute;
+    top: 789px;
+    left: 43%;
+    
+}
+#work3 img{
+    object-fit: cover;
+}
+#work4{
+    position: absolute;
+    top: 789px;
+    left: 62%;  
+}
+#work4 img{
+    object-fit: cover;
+}
+#work5{
+    position: absolute;
+    top: 789px;
+    left: 81%;
+}
+#work5 img{
+    object-fit: cover;
+}
+#Deleted{
+    display: none;
+}
+.Work #OptionShadow{
+    position: absolute;
+    width: 100%;
+    top: 0px;
+    left: 0px;
+    height: 50px;
+    background: rgba(0, 0, 0, 0.7);
+    visibility: hidden;
+}
+.Work:hover #OptionShadow{
+    visibility: visible;
+}
+.Work #OptionShadow .Delete{
+    background-color: transparent;
+    position: absolute;
+    color: white;
+    font-family: Poppins;
+    font-weight: 700;
+    height: 100%;
+    width: 10%;
+    left: 90%;
+    outline: none;
+    border: none;
+}
+.Work #OptionShadow .Delete:hover{
+    cursor: pointer;
+}
+
+.Work #OptionShadow .Edit{
+    background-color: transparent;
+    position: absolute;
+    color: white;
+    font-family: Poppins;
+    font-weight: 700;
+    font-size: large;
+    height: 100%;
+    width: 10%;
+    left: 80%;
+    outline: none;
+    border: none;
+}
+
+.Work #OptionShadow .Edit:hover{
+    cursor: pointer;
+}
+
+/* SCROLL BAR CODE
+    Taken From: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_scrollbar
+*/
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+    height: auto;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 10px;
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 10px;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+a {
+    color: #1F2833;
+    text-decoration: none;
+}

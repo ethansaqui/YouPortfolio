@@ -1,0 +1,33 @@
+ <div class="parent">
+    <div class="child">
+        <div class="image-container">
+            <div class="black-overlay-top">
+                <div class="caption">
+                    {{ caption }}
+                </div>
+            </div>
+            <div class="black-overlay-btm">
+                <div class="artist">
+                    {{ artist }}
+                </div>
+            </div>
+            <img class="post-image" src='..'+{{ image }}/>
+        </div>    
+        {{each comment}}
+            {{> comment}}
+        {{/each}}
+    </div>
+    <div class="post-quality">
+        <div class="likes">
+            <div id="heart">
+                <img src="/images/empty-heart.png"/>
+            </div>
+            <div id="like-count">{{ likes }}</div>
+        </div>
+        <div class="profile-pic-container">
+            <div id="profile-picture">
+                <img src='..'+{{ artist-picture }}/>
+            </div>
+        </div>
+    </div>  
+</div>

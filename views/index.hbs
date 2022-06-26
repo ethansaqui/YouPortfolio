@@ -1,0 +1,61 @@
+<html>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+        <link rel="stylesheet" type="text/css"   href="css/homepage.css">
+        <script src="scripts/jquery-3.6.0.min.js">
+        </script>
+        <script src="scripts/homepage.js">
+        </script>
+        <title>
+            YouPortfolio
+        </title>
+    </head>
+
+    <body>
+        {{> header}}
+        <!-- Upload Pop Up-->
+        <div class="popup" id="uploadpopup">
+            <div class="overlay"></div>
+            <div class="Content">
+                <div class="UploadBox">
+                    <a href = "C:\Users"> <img src="/images/UploadPlaceHolder.jpg"> </a> 
+                </div>
+                <div id="CaptionBox">
+                    <form>
+                        <input type="Caption" placeholder="Insert Caption Here">
+                    </form>
+                </div>
+                    <button id="ConfirmUpload">Upload</button>
+                    <button id="Cancel" onclick="toggleUpload()">Cancel</button>
+            </div>
+        </div>
+        <!-- End of Upload Pop Up-->
+        <div class="sidebar">
+            <h1>Categories</h1>
+            <ul style="list-style-type:none">
+                <li><a> Photography </a></li>
+                <li><a> Digital Art </a></li>
+                <li><a> Anime </a></li>
+                <li><a> Animation </a></li>
+                <li><a> Videography </a></li>
+                <li><a> Illustration </a></li>
+                <li><a> UX/UI Design </a></li>
+                <li><a> Graphic Design </a></li>
+                <li><a> Others </a></li>
+            </ul>
+
+            <h1>Following</h1>
+            <ul style="list-style-type:none">
+                <li><a> TheLegend69 </a></li>
+                <li><a> Ramdayo </a></li>
+                <li><a> Velephyr </a></li>
+                <li><a> Shire </a></li>
+                <li><a> GawrGuna </a></li>
+                <li><a> Kannare </a></li>
+            </ul>
+        </div>
+        
+        {{{ body }}}
+
+    </body>
+</html>
