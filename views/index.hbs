@@ -2,10 +2,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <head>
         <link rel="stylesheet" type="text/css"   href="css/homepage.css">
-        <script src="scripts/jquery-3.6.0.min.js">
-        </script>
-        <script src="scripts/homepage.js">
-        </script>
+        <script src="scripts/jquery-3.6.0.min.js"></script>
+        <script src="scripts/homepage.js"></script>
+        <script src="scripts/index.js"></script>
         <title>
             YouPortfolio
         </title>
@@ -14,21 +13,7 @@
     <body>
         {{> header}}
         <!-- Upload Pop Up-->
-        <div class="popup" id="uploadpopup">
-            <div class="overlay"></div>
-            <div class="Content">
-                <div class="UploadBox">
-                    <a href = "C:\Users"> <img src="/images/UploadPlaceHolder.jpg"> </a> 
-                </div>
-                <div id="CaptionBox">
-                    <form>
-                        <input type="Caption" placeholder="Insert Caption Here">
-                    </form>
-                </div>
-                    <button id="ConfirmUpload">Upload</button>
-                    <button id="Cancel" onclick="toggleUpload()">Cancel</button>
-            </div>
-        </div>
+        
         <!-- End of Upload Pop Up-->
         <div class="sidebar">
             <h1>Categories</h1>
@@ -55,7 +40,42 @@
             </ul>
         </div>
         
-        {{{ body }}}
+        <div class="posts-wrapper">
+            <div>
+                <h1 class="your-feed">
+                    Your <span>Feed</span>.
+                </h1>
+                <p class="welcome"> &nbsp The latest and greatest for you, Anya</p>
+            </div>
+
+            {{#if posts}}
+                {{>post}}
+            {{else}}
+                <p>there are no posts</p>
+            {{/if}}
+
+
+
+            <!--ImagePopups-->
+
+            <div class="popup-image">
+                <div class="caption"></div>
+            
+                <div class="profile-pic-container">
+                    <div id="profile-picture">
+                        <img src="/images/guest.png"/>
+                    </div>
+                </div>
+                <span>&times;</span>
+                <img class="popup" src="/images/NRTK.jpg"/>            
+            </div>
+
+            <!--EndImagePopups-->
+
+            <!--ENDOFPOPUPS-->
+        </div>
+
+        
 
     </body>
 </html>

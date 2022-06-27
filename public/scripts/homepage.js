@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    console.log("WTF IS GOING ON");
     // Comment Functions
     const user = "Anya";
 

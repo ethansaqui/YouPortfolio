@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 
 const PostSchema = new mongoose.Schema({
     caption: String,
-    content: String,
+    image: String,
     artist: String,
     likes: Number,
     artistPicture: String

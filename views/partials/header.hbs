@@ -10,6 +10,21 @@
         <button id="upload" onclick="toggleUpload()">Upload</button>
         <a href="/"><button id="logout">Logout</button></a>
     <div class="nav-bar-profile">
-        <a href="/account"><img class="nav-bar-pfp" src="/images/anya.png"/></a>
+        <img class="nav-bar-pfp" src="/images/anya.png"/>
     </div>
 </nav>
+
+<div class="popup" id="uploadpopup">
+    <div class="overlay"></div>
+    <div class="Content">
+        <div id="CaptionBox">
+            <form id="upload-post" enctype="multipart/form-data">
+                <br>
+                <input type="file" name="image" id="image">
+                <input type="Caption" name="caption" id="caption" placeholder="Insert Caption Here">
+                <input type="submit" id="ConfirmUpload" value="Upload">
+            </form>
+        </div>
+            <button id="Cancel" onclick="toggleUpload()">Cancel</button>
+    </div>
+</div>

@@ -1,9 +1,11 @@
 const express = require(`express`);
-const controller = require(`../controllers/controller.js`);
+const controller = require(`../controllers/controller`);
+const router = require(`express`).Router();
 
 const app = express();
 
-app.get(`/`, controller.getHomepage);
-app.get(`/account`, controller.getAccountPage);
+router.get(`/`, controller.getHomepage);
+router.get('/account', controller.getAccountPage);
+router.post(`/upload`, controller.uploadPost);
 
-module.exports = app;
+module.exports = router;

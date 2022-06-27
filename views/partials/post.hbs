@@ -12,10 +12,12 @@
                 </div>
             </div>
             <img class="post-image" src='..'+{{ content }}/>
-        </div>    
-        {{each comment}}
-            {{> comment}}
-        {{/each}}
+        </div> 
+        {{#if comments}}   
+            {{#each comments}}
+                {{> comment}}
+            {{/each}}
+        {{/if}}
     </div>
     <div class="post-quality">
         <div class="likes">
