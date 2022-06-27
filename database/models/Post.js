@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 
 const PostSchema = new mongoose.Schema({
-    description: String,
+    caption: String,
     content: String,
-    author: String,
-    likes: Number
+    artist: String,
+    likes: Number,
+    artistPicture: String
 });
 
 const Post = mongoose.model('Post', PostSchema);

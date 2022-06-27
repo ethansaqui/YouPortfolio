@@ -33,8 +33,7 @@ $(document).ready(function() {
         console.log("clicked");
     })
 
-    // Reply Functionality (THIS CAN BE IMPROVED  -JARED)
-
+    // Reply Functionality
     var replyDOM = $("<form id=\"reply-form\"></form>").html(`
             <button id="cancel-reply" type="button"> &times; </button>
             <input type="text" id="reply" name="reply">
@@ -134,6 +133,9 @@ $(document).ready(function() {
             $(this).width = img.height;
         }
     })
+
+    
+
 })
 
 function toggleUpload(){

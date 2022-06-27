@@ -11,7 +11,7 @@
                     {{ artist }}
                 </div>
             </div>
-            <img class="post-image" src='..'+{{ image }}/>
+            <img class="post-image" src='..'+{{ content }}/>
         </div>    
         {{each comment}}
             {{> comment}}
@@ -26,7 +26,7 @@
         </div>
         <div class="profile-pic-container">
             <div id="profile-picture">
-                <img src='..'+{{ artist-picture }}/>
+                <img src='..'+{{ artistPicture }}/>
             </div>
         </div>
     </div>  
