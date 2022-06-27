@@ -1,5 +1,6 @@
 const db = require(`../database/models/db`);
 
+const Profile = require('../models/Profile.js');
 
 const controller = {
     getHomepage : function(req, res) {
@@ -7,7 +8,7 @@ const controller = {
     },
 
     getAccountPage: function(req, res){
-        res.render ('accountpage');
+        res.render ('/layouts/accountpage.hbs');
     }
 }
 
