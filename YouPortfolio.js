@@ -11,16 +11,8 @@ app.use('/', routes);
 app.set(`view engine`,`hbs`);
 hbs.registerPartials(__dirname + `/views/partials`);
 
-
-
 const fileUpload = require('express-fileupload');
 app.use(express.static('public'));
-
-
-
-
-
-
 
 var server = app.listen(3000,function(){
     console.log ("node server runing port 3000. . . . .");
