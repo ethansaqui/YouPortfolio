@@ -7,4 +7,79 @@
         <script src="scripts/jquery-3.6.0.min.js"></script>
         <script src="scripts/accountpage.js" ></script>
     </head>
+
+    <body>
+        {{> header}}
+        <!-- Upload Pop Up Here -->
+        <div class="coverPhoto">
+            <!-- Cover Photo Handlebar -->
+        </div>
+        <div class="ProfilePicture">
+            <span class="ChangePFP">
+                <button class="PFPButton">Change Photo</button>
+            </span>
+            <!-- PFP image -->
+        </div>
+        <div class="popup" id="PFPPopup">
+            <div class="overlay"></div>
+            <div class="PFPcontent">
+                <div class="UploadBox">
+                    <img src="/images/UploadPlaceHolder.jpg">
+                </div>
+                <form action="/ChangePhoto" method="post" enctype="multipart/form-data" id="ChoosePhoto">
+                    <input type="file" name="PFP">
+                </form>
+                <button id="Confirm">Confirm</button>
+                <button id="Cancel" onclick="toggleChange()">Cancel</button>
+            </div>  
+        </div>
+        <div class="userBanner">
+            <h2 id="User">Anya</h2>
+            <span id="followers1">
+                <span id="followercount">0 </span><span id="followers">Followers</span>
+            </span>
+            <span id="following1">
+                <span id="followingcount">0 </span><span id="following">Following</span>
+            </span>
+            <button id="followButton" onclick="Follow()">Follow</button>
+            <span id="CommissionBox">
+                <span id="Details1">
+                    <p id="Details">Commission Details</p>
+                    <p id="Email"><a id="email" href="mailto:LegendsFan@art.com">LegendsFan@art.com</a></p>
+                    <p id="Link">YouPortfolio/Account</p>
+                </span>
+            </span> 
+            <p id="Bio">
+                <!-- Bio -->
+            </p>
+        </div>
+        <div class="FeelingBar" >
+            <!-- PFP Handlebar -->
+            <form>
+                <input type="Feeling" placeholder="What Are You Feeling?">
+            </form>
+        </div>
+        <h2 id="UserWorks">
+            <span id="Username">Anya</span>
+            <span id="Works">Works</span>
+        </h2>
+        <div class="Projects">
+            <!-- User Works HandleBar -->
+        </div>
+
+        <div class="popup" id="Editpopup">
+            <div class="overlay"></div>
+            <div class="EditContent">
+                <h1 id="EditHeader">Edit Caption!</h1>
+                <div id="CaptionBox">
+                    <form>
+                        <input type="Caption" placeholder="Insert Caption Here">
+                    </form>
+                </div>
+                    <button id="ConfirmUpload">Change</button>
+                    <button id="Cancel" onclick="toggleEdit()">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </body>
 </html>
