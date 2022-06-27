@@ -316,12 +316,13 @@
     position: absolute;
     top: 88px;
     left: 30%;
-    height: 20px;
-    width: 74px;
+    height: 40px;
+    width: 80px;
     background: rgba(0, 0, 0, 0.7);
     border: 1px solid white;
     font-family: poppins;
     font-weight: 400px;
+    color: white;
 }
 .PFPButton:hover{
     cursor: pointer;
