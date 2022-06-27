@@ -13,12 +13,17 @@
         <!-- Upload Pop Up Here -->
         <div class="coverPhoto">
             <!-- Cover Photo Handlebar -->
+            <span class="ChangePFP">
+                <button class="PFPButton">Change Photo</button>
+            </span>
+            <img src="../{{this.CoverPhoto}}">
         </div>
         <div class="ProfilePicture">
             <span class="ChangePFP">
                 <button class="PFPButton">Change Photo</button>
             </span>
             <!-- PFP image -->
+            <img src="../{{this.ProfileImage}}">
         </div>
         <div class="popup" id="PFPPopup">
             <div class="overlay"></div>
@@ -51,10 +56,12 @@
             </span> 
             <p id="Bio">
                 <!-- Bio -->
+                {{this.Bio}}
             </p>
         </div>
         <div class="FeelingBar" >
             <!-- PFP Handlebar -->
+            <img src="../{{this.ProfileImage}}">
             <form>
                 <input type="Feeling" placeholder="What Are You Feeling?">
             </form>
