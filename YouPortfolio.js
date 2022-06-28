@@ -32,8 +32,6 @@ app.use('/', routes);
 app.set(`view engine`, `hbs`);
 hbs.registerPartials(__dirname + `/views/partials`);
 
-
-
 const fileUpload = require('express-fileupload');
 app.use(express.static('public'));
 
