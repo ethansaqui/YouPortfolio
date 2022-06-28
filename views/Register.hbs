@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" media="all" href="thecss.css">
+    <title>Log in to YouPortfolio</title>
+</head>
+
+<body>
+    <div class="header">
+        <div class="title">You<span class="port">Portfolio</span>.</div>
+        <div class="desc">Share art and request commissions all in one page!</div>
+
+    </div>
+    <div class="error">{{>messages}}</div>
+    <div class="login">
+        <form action="/register" id="formwrap" method="post">
+            USERNAME: <input type="text" name="username" id="username" /><br> PASSWORD:
+            <input type="password" name="password" id="password" /><br>
+            CONFIRM PASSWORD:
+            <input type="password" name="confirmPass" id="confirmPass" /><br>
+            <button type="submit" id="submitl">Register</button>
+        </form>
+  
+    </div>
+    <div class="footer">
+        <div class="query">Already have an <span class="account">Account</span>?</div>
+        <div class="details">Share your work for thousands to see!<br>Just click the button below to login to your account and start sharing!</div>
+        <button id="register">Login NOW</button>
+        <script>
+            document.getElementById("register").onclick = function() {
+                location.href = "Login.html";
+            }
+        </script>
+    </div>
+</body>
+
+</html>
