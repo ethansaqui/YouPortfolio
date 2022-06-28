@@ -1,7 +1,7 @@
 const express = require(`express`);
 const controller = require(`../controllers/controller.js`);
-const { registerValidation } = require('../validators');
-const { loginValidation } = require('../validators');
+const { registerValidation } = require('../public/scripts/validators');
+const { loginValidation } = require('../public/scripts/validators');
 const app = express();
 
 app.post('/register', registerValidation, controller.registerUser);
