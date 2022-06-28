@@ -1,5 +1,11 @@
 const mongoose = require('mongoose');
 
+/*
+Insert Scemas here 
+*/
+var Post = require(`./Post`);
+var Comment = require(`./Comment`);
+
 const url = 'mongodb://localhost:27017/youPortfolioDB';
 
 const options = {

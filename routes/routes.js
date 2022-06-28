@@ -4,8 +4,20 @@ const { registerValidation } = require('../public/scripts/validators');
 const { loginValidation } = require('../public/scripts/validators');
 const app = express();
 
+// middleware for upload
+var multer = require('multer');
+var storage = multer.diskStorage({
+    destination:(req, file, cb) => {
+        cb(null, 'public/postImages');
+    }, filename: (req, file, cb) => {
+        cb(null, file.fieldname + '-' + Date.now())
+    }
+})
+
+var upload = multer({storage : storage});
 app.post('/register', registerValidation, controller.registerUser);
 app.post('/login', loginValidation, controller.loginUser);
+app.post('/uploadpost', upload.single('imageIn') , controller.uploadPost);
 app.get(`/`, controller.getRegister);
 app.get(`/account`, controller.getAccountPage);
 app.get(`/home`, controller.getHomepage);

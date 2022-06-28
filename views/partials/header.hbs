@@ -13,3 +13,16 @@
         <a href="/account"><img class="nav-bar-pfp" src="/images/anya.png"/></a>
     </div>
 </nav>
+<div class="popup" id="uploadpopup">
+    <div class="overlay"></div>
+    <div class="Content">
+        <div id="CaptionBox">
+            <form action="/uploadPost" method="POST" enctype="multipart/form-data">
+                <input type="Caption" name="captionIn" id="captionIn" placeholder="Insert Caption Here" required>
+                <input type="file" name="imageIn" id="imageIn" required>
+                <input id="ConfirmUpload" type="submit" name="uploadPost" value="upload">
+            </form>
+        </div>
+            <button id="Cancel" onclick="toggleUpload()">Cancel</button>
+    </div>
+</div>

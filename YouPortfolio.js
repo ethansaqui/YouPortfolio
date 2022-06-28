@@ -7,8 +7,27 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo');
 
-const app = new express();
-db.connect();
+//upload code
+require('dotenv/config');
+
+const app = express();
+db.connect(process.env.MONGO_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true }, err => {
+        console.log('connection')
+    }
+);
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+app.set(`view engine`, `hbs`);
+hbs.registerPartials(__dirname + `/views/partials`);
+
+
+// end of upload code
+
+
 app.use(flash());
 app.use(session({
     secret: 'somegibberishsecret',
@@ -26,22 +45,9 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', routes);
 
-app.set(`view engine`, `hbs`);
-hbs.registerPartials(__dirname + `/views/partials`);
-
-const fileUpload = require('express-fileupload');
 app.use(express.static('public'));
-
-
-
-
-
-
-
-
 
 var server = app.listen(3000, function() {
     console.log("node server runing port 3000. . . . .");

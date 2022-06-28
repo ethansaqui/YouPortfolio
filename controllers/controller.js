@@ -1,20 +1,32 @@
 const db = require(`../database/models/db`);
+
 const profile = require(`../database/models/Profile`);
+const Post = require(`../database/models/Post`);
+const Comment = require(`../database/models/Comment`);
+
 const { validationResult } = require('express-validator');
 
 const bcrypt = require('bcrypt');
+var fs = require('fs');
+var path = require('path');
 const saltRound = 10;
-
-
 
 const controller = {
     getRegister: function(req, res) {
         res.render('register');
     },
     getHomepage: function(req, res) {
-        res.render('index');
+        //upload test code, remove later
+        Post.find({}, (err, items) => {
+            if(err) {
+                console.log(err);
+                res.status(500).send('Something broke in Post find');
+            }
+            else {
+                res.render('index', {items : items});
+            }
+        })
     },
-
     getAccountPage: function(req, res) {
         res.render('/layouts/accountpage.hbs');
     },
@@ -111,6 +123,27 @@ const controller = {
             req.flash('error_msg', messages.join(' '));
             res.redirect('/login');
         }
+    },
+    uploadPost: function(req, res, next) {
+        console.log(req.file);
+        var tempPost = {
+            caption: req.body.captionIn,
+            img: {
+                data: fs.readFileSync(path.join(__dirname + `/../public/postImages/` + req.file.filename)),
+                contentType: 'image/png'
+            },
+            artist: "filler-artist",
+            likes: 0,
+            artistPicture: "no-pic"
+        }
+        Post.create(tempPost, (err, item) => {
+            if(err) {
+                console.log(err);
+            }
+            else {
+                res.redirect('/home');
+            }
+        })
     }
 }
 
