@@ -9,6 +9,7 @@ const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 var fs = require('fs');
 var path = require('path');
+const M = require('minimatch');
 const saltRound = 10;
 
 const controller = {
@@ -28,8 +29,9 @@ const controller = {
         })
     },
     getAccountPage: function(req, res) {
-        res.render('/layouts/accountpage.hbs');
+        res.render('accountpage');
     },
+    
     registerUser: function(req, res) {
         const errors = validationResult(req);
         var projection = "";
@@ -151,7 +153,25 @@ const controller = {
     changePhoto: function(req,res,next){
         var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))
         console.log(data);
-        res.redirect('/account');
+        var tempProfile = {
+            username: "PagMan",
+            password: "PaggerMan",
+            CoverPhoto: null ,
+            ProfileImage: {
+                data: data,
+                contentType: 'image/png'
+            },
+            Bio: "PagManImWorking"
+        }
+
+        profile.create(tempProfile, (err, item) => {
+            if(err) {
+                console.log(err);
+            }
+            else {
+                res.redirect('/account');
+            }
+        })
     }
 }
 
