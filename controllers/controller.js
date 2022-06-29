@@ -146,6 +146,12 @@ const controller = {
                 res.redirect('/home');
             }
         })
+    },
+
+    changePhoto: function(req,res,next){
+        var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))
+        console.log(data);
+        res.redirect('/account');
     }
 }
 
