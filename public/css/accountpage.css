@@ -520,6 +520,7 @@
     top: 577px;
     border: 4px solid black;
     border-radius: 50%;
+    object-fit: cover;
 
 }
 .FeelingBar input{
