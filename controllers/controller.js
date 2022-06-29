@@ -27,11 +27,26 @@ const controller = {
                 res.status(500).send('Something broke in Post find');
             }
             else {
-                res.render('index', {posts : posts});
+                res.render('index', {posts : posts}, () => {
+                    Comment.find({}, (err, comments) => {
+                        if(err) {
+                            console.log(err);
+                        }
+                        else {
+                            res.render('index', 
+                            {
+                                posts : {
+                                main : posts, 
+                                comments : comments}
+                            })
+                        }
+                    })
+                });
             }
         })
 
-        
+        // load comments
+
     },
     getAccountPage: function(req, res) {
         var username = "Poije";
@@ -157,7 +172,7 @@ const controller = {
                 data: data,
                 contentType: 'image/png'  
             },
-            artist: "filler-artist",
+            artist: req.session.name,
             likes: 0,
             artistPicture: "no-pic"
         }
@@ -175,7 +190,7 @@ const controller = {
         var tempComment = {
             postId: req.body.postID,
             parentCommentId: null,
-            username: "filler",
+            username: req.session.name,
             content: req.body.comment
         }
         Comment.create(tempComment, (err, item) => {

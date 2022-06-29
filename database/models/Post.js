@@ -8,7 +8,7 @@ const PostSchema = new mongoose.Schema({
     },
     artist: String,
     likes: Number,
-    artistPicture: String
+    artistPicture: String,
 });
 
 const Post = mongoose.model('Post', PostSchema);
