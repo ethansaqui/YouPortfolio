@@ -9,12 +9,11 @@ app.post('/login', loginValidation, controller.loginUser);
 app.get(`/`, controller.getRegister);
 app.get(`/account`, controller.getAccountPage);
 app.get(`/home`, controller.getHomepage);
-app.get('/register', (req, res) => {
-    res.render('register', { pageTitle: 'Registeration' });
-});
-app.get('/login', (req, res) => {
-    res.render('login');
-});
+app.get('/register', controller.getRegister);
+app.get('/login', controller.getLogin);
+app.get('/logout', controller.logoutUser);
+
+//app.get('/logout', isPrivate, controller.logoutUser);
 
 
 module.exports = app;

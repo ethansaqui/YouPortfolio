@@ -1,10 +1,10 @@
-$(document).ready(function(){
+$(document).ready(function() {
 
-    $('#upload').click(function(){
+    $('#upload').click(function() {
         $('#uploadpopup').toggleClass("active");
     });
 
-    $('.PFPButton').click(function(){
+    $('.PFPButton').click(function() {
         $('#PFPPopup').toggleClass("active");
     });
 

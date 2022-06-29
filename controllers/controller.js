@@ -1,6 +1,7 @@
 const db = require(`../database/models/db`);
 const profile = require(`../database/models/Profile`);
 const { validationResult } = require('express-validator');
+const { isPrivate } = require('../middlewares/checkAuth');
 
 const bcrypt = require('bcrypt');
 const saltRound = 10;
@@ -9,10 +10,32 @@ const saltRound = 10;
 
 const controller = {
     getRegister: function(req, res) {
-        res.render('register');
+        if (req.session.user) {
+            res.render('index', { pageTitle: 'Home', name: req.session.name });
+        } else {
+            res.render('register', {
+                pageTitle: 'Registration',
+            });
+        }
+    },
+    getLogin: function(req, res) {
+        if (req.session.user) {
+            res.render('index', { pageTitle: 'Home', name: req.session.name });
+        } else {
+
+            res.render('login', {
+                pageTitle: 'Login',
+            })
+        }
     },
     getHomepage: function(req, res) {
-        res.render('index');
+        console.log(req.session);
+        if (req.session.user) {
+            res.render('index', { pageTitle: 'Home', name: req.session.name });
+        } else {
+            res.render('login');
+        }
+
     },
 
     getAccountPage: function(req, res) {
@@ -111,7 +134,18 @@ const controller = {
             req.flash('error_msg', messages.join(' '));
             res.redirect('/login');
         }
+    },
+    logoutUser: function(req, res) {
+        if (req.session) {
+            req.session.destroy(() => {
+                res.clearCookie('connect.sid');
+                res.redirect('/login');
+            });
+        } else {
+            res.render('login');
+        }
     }
+
 }
 
 module.exports = controller;
