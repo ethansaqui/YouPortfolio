@@ -3,8 +3,14 @@ const mongoose = require('mongoose');
 const ProfileSchema = new mongoose.Schema({
     username: String,
     password: String,
-    CoverPhoto: String,
-    ProfileImage: String,
+    CoverPhoto: {
+        data: Buffer,
+        contentType: String
+    },
+    ProfileImage: {
+        data: Buffer,
+        contentType: String
+    },
     Bio: String
 })
 

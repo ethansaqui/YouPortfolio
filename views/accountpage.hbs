@@ -13,17 +13,30 @@
         <!-- Upload Pop Up Here -->
         <div class="coverPhoto">
             <!-- Cover Photo Handlebar -->
-            <span class="ChangePFP">
-                <button class="PFPButton">Change Photo</button>
+            <span class="ChangeCover">
+                <button class="CoverButton">Change Photo</button>
             </span>
-            <img src="../{{this.CoverPhoto}}">
+            <img src={{convertImage CoverPhoto}}>
+        </div>
+        <div class="popup" id="CoverPopup">
+            <div class="overlay"></div>
+            <div class="Covercontent">
+                <div class="UploadBox">
+                    <img src="/images/UploadPlaceHolder.jpg">
+                </div>
+                <form action="/ChangeCover" method="POST" enctype="multipart/form-data" id="ChooseCover">
+                    <input type="file" name="CoverPhoto" id="CoverPhoto">
+                    <button type="submit" id="ConfirmUpload">Confirm</button>
+                    <button id="Cancel" onclick="toggleChange()">Cancel</button>
+                </form>
+            </div>  
         </div>
         <div class="ProfilePicture">
             <span class="ChangePFP">
                 <button class="PFPButton">Change Photo</button>
             </span>
             <!-- PFP image -->
-            <img src="../{{this.ProfileImage}}">
+            <img src= {{convertImage ProfileImage}}>
         </div>
         <div class="popup" id="PFPPopup">
             <div class="overlay"></div>
@@ -31,15 +44,15 @@
                 <div class="UploadBox">
                     <img src="/images/UploadPlaceHolder.jpg">
                 </div>
-                <form action="/ChangePhoto" method="post" enctype="multipart/form-data" id="ChoosePhoto">
-                    <input type="file" name="PFP">
-                    <button type="submit" id="Confirm">Confirm</button>
+                <form action="/ChangePhoto" method="POST" enctype="multipart/form-data" id="ChoosePhoto">
+                    <input type="file" name="ProfileImage" id="ProfileImage">
+                    <button type="submit" id="ConfirmUpload">Confirm</button>
                     <button id="Cancel" onclick="toggleChange()">Cancel</button>
                 </form>
             </div>  
         </div>
         <div class="userBanner">
-            <h2 id="User">Anya</h2>
+            <h2 id="User">{{username}}</h2>
             <span id="followers1">
                 <span id="followercount">0 </span><span id="followers">Followers</span>
             </span>
@@ -56,12 +69,12 @@
             </span> 
             <p id="Bio">
                 <!-- Bio -->
-                {{this.Bio}}
+                {{Bio}}
             </p>
         </div>
         <div class="FeelingBar" >
             <!-- PFP Handlebar -->
-            <img src="../{{this.ProfileImage}}">
+            <img src= {{convertImage ProfileImage}}>
             <form>
                 <input type="Feeling" placeholder="What Are You Feeling?">
             </form>

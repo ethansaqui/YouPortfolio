@@ -8,4 +8,8 @@ $(document).ready(function(){
         $('#PFPPopup').toggleClass("active");
     });
 
+    $('.CoverButton').click(function(){
+        $('#CoverPopup').toggleClass("active");
+    });
+
 })
