@@ -40,8 +40,41 @@
                 <li><a> Kannare </a></li>
             </ul>
         </div>
-        
-        {{{ body }}}
 
+        <div class="posts-wrapper">
+            <div>
+                <h1 class="your-feed">
+                    Your <span>Feed</span>.
+                </h1>
+                <p class="welcome"> &nbsp The latest and greatest for you, Anya</p>
+            </div>
+
+            {{#if posts}}
+                {{#each posts}}
+                    {{> post}}
+                {{/each}}
+            {{else}}
+                <p>There are no posts right now!</p>
+            {{/if}}
+
+         <!--ImagePopups-->
+
+            <div class="popup-image">
+                <div class="caption"></div>
+            
+                <div class="profile-pic-container">
+                    <div id="profile-picture">
+                        <img src="/images/guest.png"/>
+                    </div>
+                </div>
+                <span>&times;</span>
+                <img class="popup" src="/images/NRTK.jpg"/>            
+            </div>
+            
+
+            <!--EndImagePopups-->
+        </div>
+
+       
     </body>
 </html>

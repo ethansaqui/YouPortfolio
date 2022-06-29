@@ -7,6 +7,8 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const MongoStore = require('connect-mongo');
 
+
+
 //upload code
 require('dotenv/config');
 
@@ -24,6 +26,11 @@ app.use(bodyParser.json());
 app.set(`view engine`, `hbs`);
 hbs.registerPartials(__dirname + `/views/partials`);
 
+hbs.registerHelper('convertImage', (image) => {
+    var imageString = image.data.toString('base64');
+    var imagePath = "data:" + image.contentType + ";base64," + imageString;
+    return imagePath;
+})
 
 // end of upload code
 

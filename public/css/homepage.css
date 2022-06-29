@@ -360,6 +360,13 @@ a:hover {
 }
 
 /* Comments */
+#no-comment {
+    width: 100%;
+    font: 17px Poppins;
+    color: white;
+    text-align: center;
+}
+
 .comment-box {
     background-color:rgb(31,40,51,.8);
     border-radius: 20px;
@@ -367,7 +374,7 @@ a:hover {
     overflow-y:scroll;
     overflow-x: hidden;
     width: 60vw;
-    height: 14vw;
+    height: 10vw;
     transition: 500ms;
 }
 

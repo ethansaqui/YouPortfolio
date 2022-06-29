@@ -17,13 +17,13 @@ const controller = {
     },
     getHomepage: function(req, res) {
         //upload test code, remove later
-        Post.find({}, (err, items) => {
+        Post.find({}, (err, posts) => {
             if(err) {
                 console.log(err);
                 res.status(500).send('Something broke in Post find');
             }
             else {
-                res.render('index', {items : items});
+                res.render('index', {posts : posts});
             }
         })
     },
@@ -125,17 +125,19 @@ const controller = {
         }
     },
     uploadPost: function(req, res, next) {
-        console.log(req.file);
+
+        var data = fs.readFileSync(path.join(__dirname + `/../public/postImages/` + req.file.filename))
         var tempPost = {
             caption: req.body.captionIn,
             img: {
-                data: fs.readFileSync(path.join(__dirname + `/../public/postImages/` + req.file.filename)),
-                contentType: 'image/png'
+                data: data,
+                contentType: 'image/png'  
             },
             artist: "filler-artist",
             likes: 0,
             artistPicture: "no-pic"
         }
+        
         Post.create(tempPost, (err, item) => {
             if(err) {
                 console.log(err);
