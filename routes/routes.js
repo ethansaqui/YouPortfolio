@@ -24,11 +24,16 @@ var Profilestorage = multer.diskStorage({
 
 var upload = multer({storage : storage});
 var ProfileUpload = multer({storage: Profilestorage});
+
+
+
 app.post('/register', registerValidation, controller.registerUser);
 app.post('/login', loginValidation, controller.loginUser);
 app.post('/uploadpost', upload.single('imageIn') , controller.uploadPost);
 app.post('/ChangePhoto', ProfileUpload.single('ProfileImage'), controller.changePhoto);
 app.post('/ChangeCover', ProfileUpload.single('CoverPhoto'), controller.changeCover);
+app.post('/uploadcomment', controller.uploadComment);
+app.post('/uploadreply', controller.uploadReply);
 app.get(`/`, controller.getRegister);
 app.get(`/account`, controller.getAccountPage);
 app.get(`/home`, controller.getHomepage);

@@ -12,6 +12,9 @@ var path = require('path');
 const M = require('minimatch');
 const saltRound = 10;
 
+
+
+
 const controller = {
     getRegister: function(req, res) {
         res.render('register');
@@ -27,6 +30,8 @@ const controller = {
                 res.render('index', {posts : posts});
             }
         })
+
+        
     },
     getAccountPage: function(req, res) {
         var username = "PagCoverMan";
@@ -166,7 +171,25 @@ const controller = {
             }
         })
     },
+    uploadComment: function(req, res) {
+        var tempComment = {
+            postId: req.body.postID,
+            parentCommentId: null,
+            username: "filler",
+            content: req.body.comment
+        }
+        Comment.create(tempComment, (err, item) => {
+            if(err) {
+                console.log(err);
+            }
+            else {
+                res.redirect('/home');
+            }
+        })
+    },
+    uploadReply: function(req, res) {
 
+    },
     changePhoto: function(req,res,next){
         var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))
         console.log(req.file.filename);
@@ -192,7 +215,6 @@ const controller = {
             }
         })
     },
-
     changeCover: function(req,res,next){
         var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))
         console.log(req.file.filename);
@@ -221,6 +243,7 @@ const controller = {
             }
         })
     }
+    
 
 }
 

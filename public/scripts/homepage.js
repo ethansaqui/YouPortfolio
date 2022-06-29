@@ -3,17 +3,20 @@ $(document).ready(function() {
     // Comment Functions
     const user = "Anya";
 
-    var commentDOM = $("<form id=\"comment-form\"></form>").html(`
-            <button id="cancel-comment" type="button"> &times; </button>
-            <input type="text" id="comment" name="comment">
-            <input type="button" id="submit-comment" value="Comment">
-        `)
+    
     
     // Comment Functionality
     $(".comment-button").on("click", function () {
-        console.log("clicked");
         var comBtn = $(this);
-        console.log(comBtn);
+        var postID = comBtn.parents(".comment-box").siblings(".image-container").children(".post-image").attr('id');
+
+        var commentDOM = $("<form id=\"comment-form\" method=\"POST\" action=\"/uploadcomment\"></form>").html(`
+            <button id="cancel-comment" type="button"> &times; </button>
+            <input type="text" id="comment" name="comment">
+            <input type="hidden" name="postID" value="${postID}">
+            <input type="submit" id="submit-comment" value="Comment">
+        `)
+
         comBtn.after(commentDOM);
 
         $(".comment-button").each(function () {
@@ -34,10 +37,10 @@ $(document).ready(function() {
     })
 
     // Reply Functionality
-    var replyDOM = $("<form id=\"reply-form\"></form>").html(`
+    var replyDOM = $("<form id=\"reply-form\" method=\"POST\" action=\"/uploadreply\"></form>").html(`
             <button id="cancel-reply" type="button"> &times; </button>
             <input type="text" id="reply" name="reply">
-            <input type="button" id="submit-reply" value="Reply">
+            <input type="submit" id="submit-reply" value="Reply">
         `)
 
     $(".reply").on("click", function () {

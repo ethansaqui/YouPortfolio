@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 /*
-Insert Scemas here 
+Insert Schemas here 
 */
 var Post = require(`./Post`);
 var Comment = require(`./Comment`);

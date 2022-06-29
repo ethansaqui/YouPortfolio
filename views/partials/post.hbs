@@ -11,23 +11,24 @@
                     {{ artist }}
                 </div>
             </div>
-            <img class="post-image" src={{convertImage img}}>
+            <img class="post-image" id= {{_id}} src={{convertImage img}}>
         </div>    
         <!--comments here-->
-        {{#if comment}}
-            {{#each comment}}
-                {{> comment}}
-            {{/each}}
-        {{else}}
-            <div class="comment-box">
-                <div class="comment-container">
-                    <div class="comment-button">
+        <div class="comment-box" id={{findComments _id}}>
+            <div class="comment-container">
+                <div class="comment-button">
                         <span>Comment</span>
                     </div>
+                {{#if (findComments _id)}}
+                    <p id="no-comment">comments found</p> 
+                    {{!#each (findComments _id)}}
+                        {{!> comment}}
+                    {{!/each}}
+                {{else}}
                     <p id="no-comment">There are no comments</p> 
-                </div> 
-            </div>
-        {{/if}}
+                {{/if}}
+            </div> 
+        </div>
     </div>
     <div class="post-quality">
         <div class="likes">
