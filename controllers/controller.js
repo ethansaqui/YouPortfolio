@@ -29,12 +29,23 @@ const controller = {
         })
     },
     getAccountPage: function(req, res) {
-        res.render('accountpage');
+        var username = "PagCoverMan";
+        var projection = "username CoverPhoto ProfileImage Bio"
+        db.findOne(profile, {username: username}, projection, function(result){
+            var data = result;
+            if (result != null){
+                res.render('accountpage', data);
+            }
+            else{
+                res.render('accountpage');
+            }
+        });
     },
-    
     registerUser: function(req, res) {
         const errors = validationResult(req);
         var projection = "";
+        var data = fs.readFileSync(path.join(__dirname + `/../public/images/guest.png`))
+        var coverdata = fs.readFileSync(path.join(__dirname + `/../public/images/default-cover.png`))
         if (errors.isEmpty()) {
             const username = req.body.username;
             var password = req.body.password;
@@ -52,7 +63,13 @@ const controller = {
                     var newUser;
                     console.log("HERE2")
                     password = await bcrypt.hash(password, saltRound);
-                    newUser = { username: username, password: password, CoverPhoto: null, ProfileImage: null, Bio: null }
+                    newUser = { username: username, password: password, CoverPhoto:{
+                        data: coverdata,
+                        contentType: 'image/png'
+                    }, ProfileImage: {
+                        data: data,
+                        contentType: 'image/png'
+                    }, Bio: "Enter Bio Here" }
                     console.log(newUser);
                     db.insertOne(profile, newUser, (err) => {
                         console.log(err);
@@ -152,17 +169,48 @@ const controller = {
 
     changePhoto: function(req,res,next){
         var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))
-        console.log(data);
+        console.log(req.file.filename);
+        /* Test Profile Only */
         var tempProfile = {
             username: "PagMan",
             password: "PaggerMan",
-            CoverPhoto: null ,
+            CoverPhoto: "none" ,
             ProfileImage: {
                 data: data,
                 contentType: 'image/png'
             },
             Bio: "PagManImWorking"
         }
+        /* Properway is to update ProfileImage of a profile Object with username */
+
+        profile.create(tempProfile, (err, item) => {
+            if(err) {
+                console.log(err);
+            }
+            else {
+                res.redirect('/account');
+            }
+        })
+    },
+
+    changeCover: function(req,res,next){
+        var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))
+        console.log(req.file.filename);
+        /* Test Profile Only */
+        var tempProfile = {
+            username: "PagCoverMan",
+            password: "PaggerMan",
+            CoverPhoto: {
+                data: data,
+                contentType:'image/png'
+            } ,
+            ProfileImage: {
+                data: data,
+                contentType:'image/png'
+            },
+            Bio: "PagManImWorking"
+        }
+        /* Properway is to update ProfileImage of a profile Object with username */
 
         profile.create(tempProfile, (err, item) => {
             if(err) {
@@ -173,6 +221,7 @@ const controller = {
             }
         })
     }
+
 }
 
 module.exports = controller;

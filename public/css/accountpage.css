@@ -153,6 +153,18 @@
     z-index: 4;
 }
 
+.popup .Covercontent{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 849px;
+    height: 572px;
+    transform: translate(-50%, -50%) scale(0);
+    transition: all 300ms ease-in-out;
+    background-color:#1F2833;
+    z-index: 4;
+}
+
 .EditContent #EditHeader{
     position: absolute;
     left: 39%;
@@ -189,7 +201,18 @@
     transform: translate(-50%, -50%) scale(1);
 }
 
+.popup.active .Covercontent{
+    transition: all 300ms ease-in-out;
+    transform: translate(-50%, -50%) scale(1);
+}
+
 .PFPcontent #ChoosePhoto{
+    position: absolute;
+    top: 420px;
+    left: 17px;
+}
+
+.Covercontent #ChooseCover{
     position: absolute;
     top: 420px;
     left: 17px;
@@ -228,10 +251,30 @@
     width: 117px;
     height: 23px;  
 }
+
+.Covercontent #ConfirmUpload,.PFPcontent #ConfirmUpload{
+    position: absolute;
+    left: 196px;
+    top: 100px;
+    background-color: #66FCF1;
+    border-radius: 35px;
+    width: 117px;
+    height: 23px;  
+}
 #Cancel{
     position: absolute;
     left: 513px;
     top: 530px;
+    background-color: #66FCF1;
+    border-radius: 35px;
+    width: 117px;
+    height: 23px;  
+}
+
+.Covercontent #Cancel,.PFPcontent #Cancel{
+    position: absolute;
+    left: 513px;
+    top: 100px;
     background-color: #66FCF1;
     border-radius: 35px;
     width: 117px;
@@ -281,11 +324,42 @@
     left: -1px;
     top: 64px;
     background-color: aquamarine;
+    overflow: hidden;
+}
+.ChangeCover {
+    position: absolute;
+    width: 100%;
+    height: 333px;
+    top: 0px;
+    left: 0px;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 2;
+    visibility: hidden;
+}
+.coverPhoto:hover .ChangeCover{
+    visibility: visible;
+}
+.CoverButton {
+    position: absolute;
+    top: 124px;
+    left: 42%;
+    height: 40px;
+    width: 290px;
+    background: rgba(0, 0, 0, 0.7);
+    border: 1px solid white;
+    font-family: poppins;
+    font-weight: 400px;
+    color: white;
+}
+.CoverButton:hover{
+    cursor: pointer;
 }
 .coverPhoto img{
     margin-left: auto;
     margin-right: auto;
     display: block;
+    object-fit: cover;
+    overflow: hidden;
 }
 
 .profilePicture img{
@@ -297,6 +371,7 @@
     border-radius: 50%;
     background-color: white;
     z-index: 2;
+    object-fit: cover;
 }
 .ChangePFP {
     position: absolute;

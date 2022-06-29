@@ -28,6 +28,7 @@ app.post('/register', registerValidation, controller.registerUser);
 app.post('/login', loginValidation, controller.loginUser);
 app.post('/uploadpost', upload.single('imageIn') , controller.uploadPost);
 app.post('/ChangePhoto', ProfileUpload.single('ProfileImage'), controller.changePhoto);
+app.post('/ChangeCover', ProfileUpload.single('CoverPhoto'), controller.changeCover);
 app.get(`/`, controller.getRegister);
 app.get(`/account`, controller.getAccountPage);
 app.get(`/home`, controller.getHomepage);
