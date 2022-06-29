@@ -34,7 +34,7 @@ const controller = {
         
     },
     getAccountPage: function(req, res) {
-        var username = "PagCoverMan";
+        var username = "Poije";
         var projection = "username CoverPhoto ProfileImage Bio"
         db.findOne(profile, {username: username}, projection, function(result){
             var data = result;
@@ -193,55 +193,30 @@ const controller = {
     changePhoto: function(req,res,next){
         var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))
         console.log(req.file.filename);
-        /* Test Profile Only */
-        var tempProfile = {
-            username: "PagMan",
-            password: "PaggerMan",
-            CoverPhoto: "none" ,
-            ProfileImage: {
-                data: data,
-                contentType: 'image/png'
-            },
-            Bio: "PagManImWorking"
+        var username = "Poije"
+        var ProfileImage = {
+            data: data,
+            contentType: 'image/png'
         }
-        /* Properway is to update ProfileImage of a profile Object with username */
-
-        profile.create(tempProfile, (err, item) => {
-            if(err) {
-                console.log(err);
-            }
-            else {
-                res.redirect('/account');
-            }
+        db.updateOne(profile, {username: username}, {ProfileImage: ProfileImage},function(){
+            console.log("Update Done");
+            res.redirect('/account');
         })
+        
     },
     changeCover: function(req,res,next){
         var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))
         console.log(req.file.filename);
-        /* Test Profile Only */
-        var tempProfile = {
-            username: "PagCoverMan",
-            password: "PaggerMan",
-            CoverPhoto: {
-                data: data,
-                contentType:'image/png'
-            } ,
-            ProfileImage: {
-                data: data,
-                contentType:'image/png'
-            },
-            Bio: "PagManImWorking"
+        var username = "Poije"
+        var CoverPhoto = {
+            data: data,
+            contentType: 'image/png'
         }
-        /* Properway is to update ProfileImage of a profile Object with username */
-
-        profile.create(tempProfile, (err, item) => {
-            if(err) {
-                console.log(err);
-            }
-            else {
-                res.redirect('/account');
-            }
+        db.updateOne(profile, {username: username}, {CoverPhoto: CoverPhoto},function(){
+            console.log("Update Done");
+            res.redirect('/account');
         })
+        
     }
     
 
