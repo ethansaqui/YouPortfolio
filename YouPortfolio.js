@@ -33,6 +33,22 @@ hbs.registerHelper('convertImage', (image) => {
     return imagePath;
 })
 
+hbs.registerHelper('is_eq', function(x, y, options) {
+    if(typeof x == 'undefined' || typeof y == 'undefined') {
+        console.log("ignored undefined in is_eq")
+        return false;
+    }
+    if(x == null || y == null) {
+        return false
+    } 
+    if(x.equals(y)) // Or === depending on your needs
+        return true;
+});
+
+hbs.registerHelper('combineComments', function(x, y) {
+    return {comment: x, comments: y}
+})
+
 // end of upload code
 
 

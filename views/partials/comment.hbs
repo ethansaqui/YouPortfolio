@@ -1,8 +1,9 @@
-<div class="comment" id={{_id}}>
-        <div class="comment-text">
-            <h3>{{ username }}</h3>
-            <p>{{ content}}</p>
-        </div>
+
+<div class="comment" id={{comment._id}}>
+    <div class="comment-text">
+        <h3>{{ comment.username }}</h3>
+        <p>{{ comment.content }}</p>
+    </div>
     <div class="comment-footer">
         <div class="user"><span>Edit</span></div>
         <div class="user"><span>Delete</span></div>
@@ -10,8 +11,11 @@
         <div class="show-replies"><span>Show Replies</span></div>
     </div>
 </div>
-{{#if reply}}
-    <div class="comment-container">
+{{#each comments}}
+    {{#if (is_eq this.parentCommentId ../comment._id)}}
+        <div class="comment-container">
+            {{>comment (combineComments this ../comments)}}
+        </div>
+    {{/if}}
+{{/each}}
 
-    </div>
-{{/reply}}

@@ -48,10 +48,31 @@
                 </h1>
                 <p class="welcome"> &nbsp The latest and greatest for you, Anya</p>
             </div>
-
             {{#if posts}}
-                {{#each posts}}
-                    {{> post}}
+                {{#each posts.main}}
+                <div class="parent">
+                    <div class="child">
+                        {{> post }}
+                        <div class="comment-box">
+                            <div class="comment-container">
+                                <div class="comment-button">
+                                    <span>Comment</span>
+                                </div>
+                                {{#if ../posts.comments}}
+                                    {{#each ../posts.comments}}
+                                        {{#if (is_eq ../this._id this.postId)}}
+                                            {{#unless this.parentCommentId}}
+                                                {{>comment (combineComments this ../../posts.comments)}}
+                                            {{/unless}}
+                                        {{/if}}
+                                    {{/each}}
+                                {{/if}} 
+                            </div>
+                        </div>
+                    </div>
+                    {{> postqual}}
+                </div>
+                   
                 {{/each}}
             {{else}}
                 <p>There are no posts right now!</p>

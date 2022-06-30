@@ -12,9 +12,6 @@ var path = require('path');
 const M = require('minimatch');
 const saltRound = 10;
 
-
-
-
 const controller = {
     getRegister: function(req, res) {
         res.render('register');
@@ -27,11 +24,26 @@ const controller = {
                 res.status(500).send('Something broke in Post find');
             }
             else {
-                res.render('index', {posts : posts});
+                res.render('index', {posts : posts}, () => {
+                    Comment.find({}, (err, comments) => {
+                        if(err) {
+                            console.log(err);
+                        }
+                        else {
+                            res.render('index', 
+                            {
+                                posts : {
+                                main : posts, 
+                                comments : comments}
+                            })
+                        }
+                    })
+                });
             }
         })
 
-        
+        // load comments
+
     },
     getAccountPage: function(req, res) {
         var username = "Poije";
@@ -157,7 +169,7 @@ const controller = {
                 data: data,
                 contentType: 'image/png'  
             },
-            artist: "filler-artist",
+            artist: req.session.name,
             likes: 0,
             artistPicture: "no-pic"
         }
@@ -175,7 +187,7 @@ const controller = {
         var tempComment = {
             postId: req.body.postID,
             parentCommentId: null,
-            username: "filler",
+            username: req.session.name,
             content: req.body.comment
         }
         Comment.create(tempComment, (err, item) => {
@@ -188,7 +200,20 @@ const controller = {
         })
     },
     uploadReply: function(req, res) {
-
+        var tempComment = {
+            postId: req.body.postID,
+            parentCommentId: req.body.parentCommentId,
+            username: req.session.name,
+            content: req.body.reply
+        }
+        Comment.create(tempComment, (err, item) => {
+            if(err) {
+                console.log(err);
+            }
+            else {
+                res.redirect('/home');
+            }
+        })
     },
     changePhoto: function(req,res,next){
         var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))

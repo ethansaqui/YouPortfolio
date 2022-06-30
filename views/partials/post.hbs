@@ -1,46 +1,15 @@
- <div class="parent">
-    <div class="child">
-        <div class="image-container">
-            <div class="black-overlay-top">
-                <div class="caption">
-                    {{ caption }}
-                </div>
-            </div>
-            <div class="black-overlay-btm">
-                <div class="artist">
-                    {{ artist }}
-                </div>
-            </div>
-            <img class="post-image" id= {{_id}} src={{convertImage img}}>
-        </div>    
-        <!--comments here-->
-        <div class="comment-box" id={{findComments _id}}>
-            <div class="comment-container">
-                <div class="comment-button">
-                        <span>Comment</span>
-                    </div>
-                {{#if (findComments _id)}}
-                    <p id="no-comment">comments found</p> 
-                    {{!#each (findComments _id)}}
-                        {{!> comment}}
-                    {{!/each}}
-                {{else}}
-                    <p id="no-comment">There are no comments</p> 
-                {{/if}}
-            </div> 
+<div class="image-container">
+    <div class="black-overlay-top">
+        <div class="caption">
+            {{ caption }}
         </div>
     </div>
-    <div class="post-quality">
-        <div class="likes">
-            <div id="heart">
-                <img src="/images/empty-heart.png"/>
-            </div>
-            <div id="like-count">{{ likes }}</div>
+    <div class="black-overlay-btm">
+        <div class="artist">
+            {{ artist }}
         </div>
-        <div class="profile-pic-container">
-            <div id="profile-picture">
-                <img src='..'+{{ artistPicture }}/>
-            </div>
-        </div>
-    </div>  
-</div>
+    </div>
+    <img class="post-image" id= {{_id}} src={{convertImage img}}>
+</div>    
+
+    
