@@ -60,7 +60,7 @@ const controller = {
             })
         }
         else {
-            res.render('login');
+            res.redirect("/login");
         }
         
 
