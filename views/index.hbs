@@ -60,7 +60,10 @@
                                 </div>
                                 {{#if ../posts.comments}}
                                     {{#each ../posts.comments}}
-                                        {{>comment }} 
+                                        {{log (is_eq ../this._id this.postId)}}
+                                        {{#if (is_eq ../this._id this.postId)}}
+                                            {{>comment}}
+                                        {{/if}}
                                     {{/each}}
                                 {{/if}} 
                             </div>

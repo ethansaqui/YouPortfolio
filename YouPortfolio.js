@@ -33,6 +33,11 @@ hbs.registerHelper('convertImage', (image) => {
     return imagePath;
 })
 
+hbs.registerHelper('is_eq', function(x, y, options) {
+    if(x.equals(y)) // Or === depending on your needs
+        return true;
+});
+
 // end of upload code
 
 
