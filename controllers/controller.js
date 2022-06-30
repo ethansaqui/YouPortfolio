@@ -16,7 +16,7 @@ const saltRound = 10;
 const controller = {
     getRegister: function(req, res) {
         if (req.session.user) {
-            res.render('index', { pageTitle: 'Home', name: req.session.name });
+            res.redirect('/home')
         } else {
             res.render('register', {
                 pageTitle: 'Registration',
@@ -25,7 +25,7 @@ const controller = {
     },
     getLogin: function(req, res) {
         if (req.session.user) {
-            res.render('index', { pageTitle: 'Home', name: req.session.name });
+            res.redirect('/home')
         } else {
 
             res.render('login', {
