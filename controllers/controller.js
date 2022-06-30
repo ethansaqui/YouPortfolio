@@ -49,23 +49,19 @@ const controller = {
     getAccountPage: function(req, res) {
         var username = req.session.name;
         var projection = "username CoverPhoto ProfileImage Bio";
+        var Projects
+        db.findMany(Post, {artist:username}, 'img', function(result){
+            Projects = result;
+        })
         db.findOne(profile, {username: username}, projection, function(result){
-            var data = result;
-            res.render('accountpage', data, () => {
-                db.findMany(Post, {artist: username}, 'img', function(result){
-                    if (result.length == 0){
-                        console.log("No Projects");
-                    }
-                    else{
-                        var Projects = []
-                        result.forEach((i) =>{
-                            Projects.push({img: i.img})
-                        })
-                        console.log(Projects);
-                        res.render('accountpage', {userworks:Projects});
-                    }
-                })
-            });
+            var data = {
+                username: result.username,
+                CoverPhoto: result.CoverPhoto,
+                ProfileImage: result.ProfileImage,
+                Bio: result.Bio,
+                userworks: Projects
+            }
+            res.render('accountpage', data);
         });
     },
     registerUser: function(req, res) {
