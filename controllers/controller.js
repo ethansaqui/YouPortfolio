@@ -35,28 +35,17 @@ const controller = {
     },
     getHomepage: function(req, res) {
         if(req.session.user) {
-            Post.find({}, (err, posts) => {
-                if(err) {
-                    console.log(err);
-                    res.status(500).send('Something broke in Post find');
-                }
-                else {
-                    res.render('index', {posts : posts}, () => {
-                        Comment.find({}, (err, comments) => {
-                            if(err) {
-                                console.log(err);
-                            }
-                            else {
-                                res.render('index', 
-                                {
-                                    posts : {
-                                    main : posts, 
-                                    comments : comments}
-                                })
-                            }
+            db.findMany(Post, {}, "", (posts) => {
+                res.render('index', {posts : posts}, () => {
+                    db.findMany(Comment, {}, "", (comments) => {
+                        res.render('index', 
+                        {
+                            posts : {
+                            main : posts, 
+                            comments : comments}
                         })
-                    });
-                }
+                    })
+                });  
             })
         }
         else {
@@ -188,7 +177,6 @@ const controller = {
         }
     },
     uploadPost: function(req, res, next) {
-
         var data = fs.readFileSync(path.join(__dirname + `/../public/postImages/` + req.file.filename))
         var tempPost = {
             caption: req.body.captionIn,
@@ -201,13 +189,8 @@ const controller = {
             artistPicture: "no-pic"
         }
         
-        Post.create(tempPost, (err, item) => {
-            if(err) {
-                console.log(err);
-            }
-            else {
-                res.redirect('/home');
-            }
+        db.insertOne(Post, tempPost, (err) => {
+            res.redirect('/home');
         })
     },
     uploadComment: function(req, res) {
@@ -217,13 +200,8 @@ const controller = {
             username: req.session.name,
             content: req.body.comment
         }
-        Comment.create(tempComment, (err, item) => {
-            if(err) {
-                console.log(err);
-            }
-            else {
-                res.redirect('/home');
-            }
+        db.insertOne(Comment, tempComment, (err) => {
+            res.redirect('/home');
         })
     },
     uploadReply: function(req, res) {
@@ -233,13 +211,8 @@ const controller = {
             username: req.session.name,
             content: req.body.reply
         }
-        Comment.create(tempComment, (err, item) => {
-            if(err) {
-                console.log(err);
-            }
-            else {
-                res.redirect('/home');
-            }
+        db.insertOne(Comment, tempComment, (err) => {
+            res.redirect('/home');
         })
     },
     changePhoto: function(req,res,next){
