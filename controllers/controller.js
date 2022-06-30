@@ -18,6 +18,7 @@ const controller = {
     },
     getHomepage: function(req, res) {
         //upload test code, remove later
+        console.log(req.session.name);
         Post.find({}, (err, posts) => {
             if(err) {
                 console.log(err);
@@ -47,14 +48,23 @@ const controller = {
     },
     getAccountPage: function(req, res) {
         var username = req.session.name;
-        var projection = "username CoverPhoto ProfileImage Bio"
+        var projection = "username CoverPhoto ProfileImage Bio";
         db.findOne(profile, {username: username}, projection, function(result){
             var data = result;
             res.render('accountpage', data, () => {
-                db.findMany(Post,{username: username}, img, function(result){
-                    const postData = result;
-                    res.render('accountpage', {userworks: postData});
-                });
+                db.findMany(Post, {artist: username}, 'img', function(result){
+                    if (result.length == 0){
+                        console.log("No Projects");
+                    }
+                    else{
+                        var Projects = []
+                        result.forEach((i) =>{
+                            Projects.push({img: i.img})
+                        })
+                        console.log(Projects);
+                        res.render('accountpage', {userworks:Projects});
+                    }
+                })
             });
         });
     },
