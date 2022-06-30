@@ -12,9 +12,6 @@ var path = require('path');
 const M = require('minimatch');
 const saltRound = 10;
 
-
-
-
 const controller = {
     getRegister: function(req, res) {
         res.render('register');
@@ -203,7 +200,20 @@ const controller = {
         })
     },
     uploadReply: function(req, res) {
-
+        var tempComment = {
+            postId: req.body.postID,
+            parentCommentId: req.body.parentCommentId,
+            username: req.session.name,
+            content: req.body.reply
+        }
+        Comment.create(tempComment, (err, item) => {
+            if(err) {
+                console.log(err);
+            }
+            else {
+                res.redirect('/home');
+            }
+        })
     },
     changePhoto: function(req,res,next){
         var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))

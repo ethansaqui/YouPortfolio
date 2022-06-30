@@ -37,16 +37,21 @@ $(document).ready(function() {
     })
 
     // Reply Functionality
-    var replyDOM = $("<form id=\"reply-form\" method=\"POST\" action=\"/uploadreply\"></form>").html(`
-            <button id="cancel-reply" type="button"> &times; </button>
-            <input type="text" id="reply" name="reply">
-            <input type="submit" id="submit-reply" value="Reply">
-        `)
+    
 
     $(".reply").on("click", function () {
         console.log("clicked");
         var comBtn = $(this);
+        var postID = comBtn.parents(".comment-box").siblings(".image-container").children(".post-image").attr('id');
+        var parentCommentId = comBtn.parents(".comment").attr('id');
         console.log(comBtn);
+        var replyDOM = $("<form id=\"reply-form\" method=\"POST\" action=\"/uploadreply\"></form>").html(`
+            <button id="cancel-reply" type="button"> &times; </button>
+            <input type="text" id="reply" name="reply">
+            <input type="hidden" name="postID" value="${postID}">
+            <input type="hidden" name="parentCommentId" value="${parentCommentId}">
+            <input type="submit" id="submit-reply" value="Reply">
+        `)
         comBtn.parent().after(replyDOM);
 
         $(".reply").each(function () {
@@ -76,13 +81,8 @@ $(document).ready(function() {
         }
     })
 
-    // Give only Anya the power to delete and edit her comments
-    $(".comment-text h3").each(function () {
-        var cText = $(this);
-        if(cText.text() != user) {
-            cText.parents(".comment").find(".user").css("display", "none")
-        }
-    })
+ 
+   
 
     
     var replyHidden = false;

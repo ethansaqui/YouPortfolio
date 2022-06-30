@@ -60,9 +60,18 @@
                                 </div>
                                 {{#if ../posts.comments}}
                                     {{#each ../posts.comments}}
-                                        {{log (is_eq ../this._id this.postId)}}
+
                                         {{#if (is_eq ../this._id this.postId)}}
-                                            {{>comment}}
+                                            {{#unless this.parentCommentId}}
+                                                {{>comment (combineComments this ../../posts.comments)}}
+                                            {{/unless}}
+                                            {{!#each ../../posts.comments}}
+                                                {{!#if (is_eq this.parentCommentId ../this._id)}}
+                                                    <!--<div class="comment-container">
+                                                        {{!>comment this}}
+                                                    </div>-->
+                                                {{!/if}}
+                                            {{!/each}}
                                         {{/if}}
                                     {{/each}}
                                 {{/if}} 
@@ -71,7 +80,7 @@
                     </div>
                     {{> postqual}}
                 </div>
-                    
+                   
                 {{/each}}
             {{else}}
                 <p>There are no posts right now!</p>
