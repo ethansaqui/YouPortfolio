@@ -553,61 +553,34 @@
 #Works{
     color: #66FCF1;
 }
-.Projects *{
-    width: 263px;
-    height: 253px;
+.Projects{
+    position: absolute;
+    height: auto;
+    top: 812px;
+    left: 24%;
+}
+.Work {
+    align-items: center;
+    width: 1005px;
+    height: 600px;
+    margin-bottom: 50px;
     background-color: gray;
-    margin-bottom: 10px;
+    box-sizing: border-box;
+    padding: 15px;
 }
-#work1{
-    position: absolute;
-    top: 789px;
-    left: 5%;
-}
-#work1 img{
-    object-fit: cover;
-}
-#work2{
-    position: absolute;
-    top: 789px;
-    left: 24%; 
-}
-#work2 img{
-    object-fit: cover;
-}
-#work3{
-    position: absolute;
-    top: 789px;
-    left: 43%;
-    
-}
-#work3 img{
-    object-fit: cover;
-}
-#work4{
-    position: absolute;
-    top: 789px;
-    left: 62%;  
-}
-#work4 img{
-    object-fit: cover;
-}
-#work5{
-    position: absolute;
-    top: 789px;
-    left: 81%;
-}
-#work5 img{
-    object-fit: cover;
-}
-#Deleted{
-    display: none;
-}
-.Work #OptionShadow{
-    position: absolute;
+.Work img{
     width: 100%;
-    top: 0px;
-    left: 0px;
+    height: 100%;
+    object-fit: cover;
+}
+
+#OptionShadow{
+    position: relative;
+    top: -570px;
+    margin-bottom: auto;
+    margin-left: auto;
+    display: inline-block;
+    width: 100%;
     height: 50px;
     background: rgba(0, 0, 0, 0.7);
     visibility: hidden;
@@ -615,7 +588,7 @@
 .Work:hover #OptionShadow{
     visibility: visible;
 }
-.Work #OptionShadow .Delete{
+#OptionShadow .Delete{
     background-color: transparent;
     position: absolute;
     color: white;
@@ -631,7 +604,7 @@
     cursor: pointer;
 }
 
-.Work #OptionShadow .Edit{
+#OptionShadow .Edit{
     background-color: transparent;
     position: absolute;
     color: white;

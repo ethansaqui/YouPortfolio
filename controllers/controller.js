@@ -68,16 +68,21 @@ const controller = {
 
     },
     getAccountPage: function(req, res) {
-        var username = "Poije";
-        var projection = "username CoverPhoto ProfileImage Bio"
+        var username = req.session.name;
+        var projection = "username CoverPhoto ProfileImage Bio";
+        var Projects
+        db.findMany(Post, {artist:username}, 'img', function(result){
+            Projects = result;
+        })
         db.findOne(profile, {username: username}, projection, function(result){
-            var data = result;
-            if (result != null){
-                res.render('accountpage', data);
+            var data = {
+                username: result.username,
+                CoverPhoto: result.CoverPhoto,
+                ProfileImage: result.ProfileImage,
+                Bio: result.Bio,
+                userworks: Projects
             }
-            else{
-                res.render('accountpage');
-            }
+            res.render('accountpage', data);
         });
     },
     registerUser: function(req, res) {
