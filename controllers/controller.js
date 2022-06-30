@@ -5,6 +5,7 @@ const Post = require(`../database/models/Post`);
 const Comment = require(`../database/models/Comment`);
 
 const { validationResult } = require('express-validator');
+const { isPrivate } = require('../middlewares/checkAuth');
 
 const bcrypt = require('bcrypt');
 var fs = require('fs');
@@ -14,33 +15,54 @@ const saltRound = 10;
 
 const controller = {
     getRegister: function(req, res) {
-        res.render('register');
+        if (req.session.user) {
+            res.render('index', { pageTitle: 'Home', name: req.session.name });
+        } else {
+            res.render('register', {
+                pageTitle: 'Registration',
+            });
+        }
+    },
+    getLogin: function(req, res) {
+        if (req.session.user) {
+            res.render('index', { pageTitle: 'Home', name: req.session.name });
+        } else {
+
+            res.render('login', {
+                pageTitle: 'Login',
+            })
+        }
     },
     getHomepage: function(req, res) {
-        //upload test code, remove later
-        Post.find({}, (err, posts) => {
-            if(err) {
-                console.log(err);
-                res.status(500).send('Something broke in Post find');
-            }
-            else {
-                res.render('index', {posts : posts}, () => {
-                    Comment.find({}, (err, comments) => {
-                        if(err) {
-                            console.log(err);
-                        }
-                        else {
-                            res.render('index', 
-                            {
-                                posts : {
-                                main : posts, 
-                                comments : comments}
-                            })
-                        }
-                    })
-                });
-            }
-        })
+        if(req.session.user) {
+            Post.find({}, (err, posts) => {
+                if(err) {
+                    console.log(err);
+                    res.status(500).send('Something broke in Post find');
+                }
+                else {
+                    res.render('index', {posts : posts}, () => {
+                        Comment.find({}, (err, comments) => {
+                            if(err) {
+                                console.log(err);
+                            }
+                            else {
+                                res.render('index', 
+                                {
+                                    posts : {
+                                    main : posts, 
+                                    comments : comments}
+                                })
+                            }
+                        })
+                    });
+                }
+            })
+        }
+        else {
+            res.render('login');
+        }
+        
 
         // load comments
 
@@ -242,8 +264,17 @@ const controller = {
             res.redirect('/account');
         })
         
+    },
+    logoutUser: function(req, res) {
+        if (req.session) {
+            req.session.destroy(() => {
+                res.clearCookie('connect.sid');
+                res.redirect('/login');
+            });
+        } else {
+            res.render('login');
+        }
     }
-    
 
 }
 
