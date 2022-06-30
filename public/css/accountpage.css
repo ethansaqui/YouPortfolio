@@ -559,50 +559,7 @@
     background-color: gray;
     margin-bottom: 10px;
 }
-#work1{
-    position: absolute;
-    top: 789px;
-    left: 5%;
-}
-#work1 img{
-    object-fit: cover;
-}
-#work2{
-    position: absolute;
-    top: 789px;
-    left: 24%; 
-}
-#work2 img{
-    object-fit: cover;
-}
-#work3{
-    position: absolute;
-    top: 789px;
-    left: 43%;
-    
-}
-#work3 img{
-    object-fit: cover;
-}
-#work4{
-    position: absolute;
-    top: 789px;
-    left: 62%;  
-}
-#work4 img{
-    object-fit: cover;
-}
-#work5{
-    position: absolute;
-    top: 789px;
-    left: 81%;
-}
-#work5 img{
-    object-fit: cover;
-}
-#Deleted{
-    display: none;
-}
+
 .Work #OptionShadow{
     position: absolute;
     width: 100%;
