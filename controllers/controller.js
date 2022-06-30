@@ -52,16 +52,16 @@ const controller = {
         var Projects
         db.findMany(Post, {artist:username}, 'img', function(result){
             Projects = result;
-        })
-        db.findOne(profile, {username: username}, projection, function(result){
-            var data = {
-                username: result.username,
-                CoverPhoto: result.CoverPhoto,
-                ProfileImage: result.ProfileImage,
-                Bio: result.Bio,
-                userworks: Projects
-            }
-            res.render('accountpage', data);
+            db.findOne(profile, {username: username}, projection, function(result){
+                var data = {
+                    username: result.username,
+                    CoverPhoto: result.CoverPhoto,
+                    ProfileImage: result.ProfileImage,
+                    Bio: result.Bio,
+                    userworks: Projects
+                }
+                res.render('accountpage', data);
+            });
         });
     },
     registerUser: function(req, res) {
