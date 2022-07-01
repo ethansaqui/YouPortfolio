@@ -226,6 +226,20 @@ const controller = {
             res.sendStatus(200)
         })
     },
+    editComment: function(req, res) {
+        console.log(req)
+        db.updateOne(Comment, {_id:req.body.commentID}, {content: req.body.edit}, function() {
+            console.log("comment updated");
+            res.sendStatus(200)
+        })
+    },
+    deleteComment: function(req, res) {
+        db.deleteOne(Comment, {_id : req.body.commentID}, function() {
+            db.deleteMany(Comment, {parentCommentId : req.body.commentID}, function() {
+                res.redirect('/home');
+            })
+        })
+    },
     changePhoto: function(req,res,next){
         var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))
         console.log(req.file.filename);

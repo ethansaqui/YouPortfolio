@@ -50,7 +50,8 @@ $(document).ready(function() {
     
 
     $(".reply").on("click", function() {
-  
+        $("#reply-form").remove();
+        $(".reply").css("display", "block");
         var comBtn = $(this);
         var postID = comBtn.parents(".comment-box").siblings(".image-container").children(".post-image").attr('id');
         var parentCommentId = comBtn.parents(".comment").attr('id');
@@ -64,17 +65,18 @@ $(document).ready(function() {
         `)
         comBtn.parent().after(replyDOM);
 
-        $(".reply").each(function() {
-            $(this).css("display", "block");
-        })
+        
+        $(this).css("display", "block");
+        
 
         comBtn.css("display", "none");
     })
     
     $(".comment-container").on("click", "#cancel-reply", function() {
-        $(this).parent().siblings(".comment-footer").children(".reply").css("display", "block");
+        console.log("clicked")
+        $("#reply-form").remove();
+        $(".reply").css("display", "block");
         console.log($(this).parent().siblings(".reply"));
-        $(this).parent("#reply-form").remove();
     })
 
     $(".comment-container").on("click", "#submit-reply", function() {
@@ -128,10 +130,71 @@ $(document).ready(function() {
         $(this).text("Show Replies");
     })
 
+    
+
+    //delete and edit comment
+    $(".editcomment").on("click", function() {
+        $("#edit-form").remove();
+
+        // makes sure that only the user who owns the account can edit or delete their comments
+        $(".comment-text h3").each(function() {
+            var cText = $(this);
+            if (cText.text() != user) {
+                cText.parents(".comment").find(".user").css("display", "none")
+            }
+            else {
+                cText.parents(".comment").find(".user").css("display", "block")
+            }
+        })  
+
+        // form generator
+        var comBtn = $(this);
+        var commentID = $(this).parents(".comment").attr("id");
+        var initVal = $(this).parents(".comment-footer").siblings(".comment-text").children("p").text();
+        var editDOM = $("<form id=\"edit-form\"></form>").html(`
+            <button id="cancel-edit" type="button"> &times; </button>
+            <input type="text" id="edit" name="edit" value="${initVal}">
+            <input type="hidden" id="commentID" name="commentID" value="${commentID}">
+            <input type="submit" id="submit-edit" value="Edit">
+        `)
+        comBtn.parent().after(editDOM);
+        
+        // hide button after form is made
+        comBtn.css("display", "none");
+    });
+    // remove button after function
+    $(".comment-container").on("click", "#cancel-edit", function() {
+        
+        console.log($(this).siblings());
+        $(this).parents("#edit-form").siblings(".comment-footer").children(".editcomment").css("display", "block");
+        $("#edit-form").remove();
+    });
+
+    $(".comment-container").on("click", "#submit-edit", function() {
+        $(".comment-container").off("click")
+        var edit = $("#edit").val();
+        var commentID = $("#commentID").val();
+        
+        var tempComment = {
+            edit: edit,
+            commentID: commentID,
+        }
+        $.post('/editcomment', tempComment, (data, status) => {
+            console.log(status)
+        })
+    });
+
+    $(".deletecomment").on("click", function() {
+        var commentID = $(this).parents(".comment").attr("id");
+        $.post("/deletecomment", {commentID : commentID}, (data, status) => {
+            window.location.assign('/home');
+        })
+    })
+
     // Popup Modal Image Functions
     $(".posts-wrapper .popup-image span").on("click", () => {
         $(".posts-wrapper .popup-image").css("display", "none");
-    })
+    });
 
     $(".posts-wrapper .post-image").on("click", function() { // Update the Image, Caption, and Artist of a Modal
         var imgsrc = $(this).attr('src');
@@ -152,7 +215,7 @@ $(document).ready(function() {
 
         $(".posts-wrapper .popup-image").css("display", "block");
         $(".popup-image .popup").attr('src', imgsrc);
-    })
+    });
 
     $("#profile-picture img").each(function() {
         var imgsrc = $(this).attr('src');
@@ -161,7 +224,7 @@ $(document).ready(function() {
         if (img.width > img.height) {
             $(this).width = img.height;
         }
-    })
+    });
 
     $("#ConfirmUpload").click(() => {
         console.log("TEST")
@@ -180,7 +243,7 @@ $(document).ready(function() {
                 console.log("some error", e);
             }
         });
-    })
+    });
 
     // From AccountPage.js
     $('#upload').click(function() {

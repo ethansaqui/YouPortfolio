@@ -429,14 +429,14 @@ a:hover {
     cursor: pointer;
 }
 
-#comment, #reply{
+#comment, #reply, #edit{
     width: 60%;
     margin: 0 40px;
 }
 
 
 
-#submit-comment, #cancel-comment, #submit-reply, #cancel-reply{
+#submit-comment, #cancel-comment, #submit-reply, #cancel-reply, #submit-edit, #cancel-edit{
     background-color: #1F2833;
     border: none;
     color: white;
@@ -448,7 +448,7 @@ a:hover {
     z-index: 10;
 }
 
-#cancel-comment, #cancel-reply {
+#cancel-comment, #cancel-reply, #cancel-edit {
     background-color: transparent;
     font-size: 25px;
 }
