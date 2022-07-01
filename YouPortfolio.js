@@ -28,6 +28,7 @@ hbs.registerPartials(__dirname + `/views/partials`);
 
 // for hbs helpers
 hbs.registerHelper('convertImage', (image) => {
+   
     var imageString = image.data.toString('base64');
     var imagePath = "data:" + image.contentType + ";base64," + imageString;
     return imagePath;
@@ -45,8 +46,16 @@ hbs.registerHelper('is_eq', function(x, y, options) {
         return true;
 });
 
+hbs.registerHelper('strcmp', function(x,y) {
+    return x == y;
+})
+
 hbs.registerHelper('combineComments', function(x, y) {
     return {comment: x, comments: y}
+})
+
+hbs.registerHelper('combinePostImage', function(x, y) {
+    return {user: x, postUser: y}
 })
 
 // end of upload code

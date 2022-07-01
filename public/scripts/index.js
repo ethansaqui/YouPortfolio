@@ -1,5 +1,4 @@
 $(document).ready(function() {
-    console.log("WTF IS GOING ON");
     // Comment Functions
     const user = "Anya";
 
@@ -10,10 +9,10 @@ $(document).ready(function() {
         var comBtn = $(this);
         var postID = comBtn.parents(".comment-box").siblings(".image-container").children(".post-image").attr('id');
         console.log("post id" + postID)
-        var commentDOM = $("<form id=\"comment-form\" method=\"POST\" action=\"/uploadcomment\"></form>").html(`
+        var commentDOM = $("<form id=\"comment-form\"></form>").html(`
             <button id="cancel-comment" type="button"> &times; </button>
             <input type="text" id="comment" name="comment">
-            <input type="hidden" name="postID" value="${postID}">
+            <input type="hidden" id="postID" name="postID" value="${postID}">
             <input type="submit" id="submit-comment" value="Comment">
         `)
 
@@ -33,23 +32,33 @@ $(document).ready(function() {
     })
 
     $(".comment-container").on("click", "#submit-comment", function() {
-        console.log("clicked");
+        var comment = $("#comment").val();
+        var postID = $("#postID").val();
+
+        var tempComment = {
+            comment : comment,
+            postID : postID
+        }
+
+        $.post('/uploadcomment', tempComment, (data, status) => {
+            console.log(status)
+        })
     })
 
     // Reply Functionality
     
 
     $(".reply").on("click", function() {
-        console.log("clicked");
+  
         var comBtn = $(this);
         var postID = comBtn.parents(".comment-box").siblings(".image-container").children(".post-image").attr('id');
         var parentCommentId = comBtn.parents(".comment").attr('id');
-        console.log(comBtn);
-        var replyDOM = $("<form id=\"reply-form\" method=\"POST\" action=\"/uploadreply\"></form>").html(`
+
+        var replyDOM = $("<form id=\"reply-form\"></form>").html(`
             <button id="cancel-reply" type="button"> &times; </button>
             <input type="text" id="reply" name="reply">
-            <input type="hidden" name="postID" value="${postID}">
-            <input type="hidden" name="parentCommentId" value="${parentCommentId}">
+            <input type="hidden" id="postIDReply" name="postID" value="${postID}">
+            <input type="hidden" id="parentCommentId" name="parentCommentId" value="${parentCommentId}">
             <input type="submit" id="submit-reply" value="Reply">
         `)
         comBtn.parent().after(replyDOM);
@@ -60,7 +69,7 @@ $(document).ready(function() {
 
         comBtn.css("display", "none");
     })
-
+    
     $(".comment-container").on("click", "#cancel-reply", function() {
         $(this).parent().siblings(".comment-footer").children(".reply").css("display", "block");
         console.log($(this).parent().siblings(".reply"));
@@ -68,7 +77,19 @@ $(document).ready(function() {
     })
 
     $(".comment-container").on("click", "#submit-reply", function() {
-        console.log("clicked");
+        $(".comment-container").off("click")
+        var reply = $("#reply").val();
+        var postID = $("#postIDReply").val();
+        var parentCommentId = $("#parentCommentId").val();
+
+        var tempComment = {
+            reply: reply,
+            postID: postID,
+            parentCommentId : parentCommentId
+        }
+        $.post('/uploadreply', tempComment, (data, status) => {
+            console.log(status)
+        })
     })
 
     // Hide Show Replies for comments without replies
@@ -92,20 +113,17 @@ $(document).ready(function() {
     })
 
 
-    var replyHidden = false;
     // change all show reply to hide reply
     $(".show-replies").text("Hide Replies")
 
     $(".show-replies").on("click", function() {
         var reply = $(this).closest(".comment").next(".comment-container");
-        if (replyHidden) {
+        if ($(this).html() == "Show Replies") {
             reply.css("display", "block");
-            replyHidden = false;
             $(this).text("Hide Replies");
             return;
         }
         reply.css("display", "none");
-        replyHidden = true;
         $(this).text("Show Replies");
     })
 
@@ -144,10 +162,37 @@ $(document).ready(function() {
         }
     })
 
+    $("#ConfirmUpload").click(() => {
+        console.log("TEST")
+        var formData =  new FormData($("#uploadForm").get(0));
+        console.log(formData)
+        $.ajax({
+            type: "POST",
+            url: "/uploadPost",
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(r){
+                console.log("result",r)
+            },
+            error: function (e) {
+                console.log("some error", e);
+            }
+        });
+    })
+
+    // From AccountPage.js
+    $('#upload').click(function() {
+        $('#uploadpopup').toggleClass("active");
+    });
+
+    $('.PFPButton').click(function() {
+        $('#PFPPopup').toggleClass("active");
+    });
+
+    $('.CoverButton').click(function(){
+        $('#CoverPopup').toggleClass("active");
+    });
 
 
 })
-
-function toggleUpload() {
-    document.getElementById("uploadpopup").classList.toggle("active");
-}

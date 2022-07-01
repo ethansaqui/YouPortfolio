@@ -1,13 +1,18 @@
+
 <div class="post-quality">
-        <div class="likes">
-            <div id="heart">
-                <img src="/images/empty-heart.png"/>
-            </div>
-            <div id="like-count">{{ likes }}</div>
+    <div class="likes">
+        <div id="heart">
+            <img src="/images/empty-heart.png"/>
         </div>
-        <div class="profile-pic-container">
-            <div id="profile-picture">
-                <img src='..'+{{ artistPicture }}/>
-            </div>
+        <div id="like-count">{{ likes }}</div>
+    </div>
+    <div class="profile-pic-container">
+        <div id="profile-picture">
+            {{#each user.user}}
+                {{#if (strcmp username ../postUser)}}
+                    <img src={{convertImage ProfileImage}}>
+                {{/if}}
+            {{/each}}
         </div>
-    </div>  
+    </div>
+</div>  

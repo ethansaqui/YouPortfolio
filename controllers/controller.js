@@ -38,12 +38,17 @@ const controller = {
             db.findMany(Post, {}, "", (posts) => {
                 res.render('index', {posts : posts}, () => {
                     db.findMany(Comment, {}, "", (comments) => {
-                        res.render('index', 
-                        {
-                            posts : {
-                            main : posts, 
-                            comments : comments}
+                        db.findMany(profile, {}, "username ProfileImage", (prof) => {
+                            res.render('index', 
+                            {
+                                posts : {
+                                    main : posts, 
+                                    comments : comments,
+                                    user : prof
+                                }
+                            })
                         })
+                        
                     })
                 });  
             })
@@ -177,6 +182,7 @@ const controller = {
         }
     },
     uploadPost: function(req, res, next) {
+        console.log("test")
         var data = fs.readFileSync(path.join(__dirname + `/../public/postImages/` + req.file.filename))
         var tempPost = {
             caption: req.body.captionIn,
@@ -190,10 +196,11 @@ const controller = {
         }
         
         db.insertOne(Post, tempPost, (err) => {
-            res.redirect('/home');
+            
         })
     },
     uploadComment: function(req, res) {
+        
         var tempComment = {
             postId: req.body.postID,
             parentCommentId: null,
@@ -201,10 +208,13 @@ const controller = {
             content: req.body.comment
         }
         db.insertOne(Comment, tempComment, (err) => {
-            res.redirect('/home');
+            res.sendStatus(200)
         })
     },
     uploadReply: function(req, res) {
+        console.log("CALLED")
+        console.log(req.body)
+        console.log("END CALL")
         var tempComment = {
             postId: req.body.postID,
             parentCommentId: req.body.parentCommentId,
@@ -212,7 +222,7 @@ const controller = {
             content: req.body.reply
         }
         db.insertOne(Comment, tempComment, (err) => {
-            res.redirect('/home');
+            res.sendStatus(200)
         })
     },
     changePhoto: function(req,res,next){
