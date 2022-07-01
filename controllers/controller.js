@@ -212,9 +212,6 @@ const controller = {
         })
     },
     uploadReply: function(req, res) {
-        console.log("CALLED")
-        console.log(req.body)
-        console.log("END CALL")
         var tempComment = {
             postId: req.body.postID,
             parentCommentId: req.body.parentCommentId,

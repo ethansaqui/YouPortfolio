@@ -32,6 +32,7 @@ $(document).ready(function() {
     })
 
     $(".comment-container").on("click", "#submit-comment", function() {
+        $(".comment-container").off("click")
         var comment = $("#comment").val();
         var postID = $("#postID").val();
 
@@ -190,7 +191,15 @@ $(document).ready(function() {
         $('#PFPPopup').toggleClass("active");
     });
 
+    $('.PFPcontent #Cancel').click(function(){
+        $('#PFPPopup').toggleClass("active");
+    });
+
     $('.CoverButton').click(function(){
+        $('#CoverPopup').toggleClass("active");
+    });
+
+    $('.CoverContent #Cancel').click(function(){
         $('#CoverPopup').toggleClass("active");
     });
 
