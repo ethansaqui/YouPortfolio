@@ -83,6 +83,25 @@ const controller = {
             });
         });
     },
+
+    visitAccount: function(req,res){
+        var username = req.query.name;
+        var projection = "username CoverPhoto ProfileImage Bio";
+        var Projects
+        db.findMany(Post, {artist:username}, 'img caption', function(result){
+            Projects = result;
+            db.findOne(profile, {username: username}, projection, function(result){
+                var data = {
+                    username: result.username,
+                    CoverPhoto: result.CoverPhoto,
+                    ProfileImage: result.ProfileImage,
+                    Bio: result.Bio,
+                    userworks: Projects
+                }
+                res.render('visitaccount', data);
+            });
+        });
+    },
     registerUser: function(req, res) {
         const errors = validationResult(req);
         var projection = "";
