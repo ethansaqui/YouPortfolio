@@ -65,7 +65,7 @@ const controller = {
         var username = req.session.name;
         var projection = "username CoverPhoto ProfileImage Bio";
         var Projects
-        db.findMany(Post, {artist:username}, 'img', function(result){
+        db.findMany(Post, {artist:username}, 'img caption', function(result){
             Projects = result;
             db.findOne(profile, {username: username}, projection, function(result){
                 var data = {
@@ -256,6 +256,19 @@ const controller = {
         db.updateOne(profile, {username: username}, {Bio: Bio}, function(){
             res.redirect('/account');
         })
+    },
+
+    changeCaption: function(req,res){
+        var Caption = req.query.Caption;
+        /* Add code to get Image ID Maybe */
+    },
+
+    DeletePost: function(req,res){
+        console.log(req.query.id);
+        var id = req.query.id;
+        db.deleteOne(Post, {_id:id}, function(){
+            res.redirect('/account');
+        });
     },
 
     logoutUser: function(req, res) {

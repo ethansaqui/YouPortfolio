@@ -89,19 +89,17 @@
                 {{> userworks}}
             {{/each}}
         </div>
-
         <div class="popup" id="Editpopup">
             <div class="overlay"></div>
             <div class="EditContent">
-                <h1 id="EditHeader">Edit Caption!</h1>
-                <div id="CaptionBox">
-                    <form>
-                        <input type="Caption" placeholder="Insert Caption Here">
-                    </form>
-                </div>
-                    <button id="ConfirmUpload">Change</button>
-                    <button id="Cancel" onclick="toggleEdit()">Cancel</button>
-                </div>
+            <h1 id="EditHeader">Edit Caption!</h1>
+            <div id="CaptionBox">
+                <form>
+                    <input type="caption" id="CaptionInput" placeholder="Insert Caption Here">
+                </form>
+            </div>
+                <button id="ConfirmUpload">Change</button>
+                <button id="Cancel">Cancel</button>
             </div>
         </div>
     </body>

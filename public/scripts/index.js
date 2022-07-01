@@ -203,6 +203,10 @@ $(document).ready(function() {
         $('#CoverPopup').toggleClass("active");
     });
 
+    $('.Edit').click(function(){
+       $('#Editpopup').toggleClass("active");
+    })
+
     $('#StatusBar').keypress(function(event){
         var Bio = $('#StatusBar').val();
         var keycode = (event.keyCode ? event.keyCode : event.which);
@@ -211,6 +215,23 @@ $(document).ready(function() {
                 alert("You entered" + Bio);
             })
             
+        }
+    })
+
+    $('.Delete').click(function(){
+        var parent = $(this).parent().parent();
+        var WorkID =($(parent).attr('id'));
+        $.get('/DeletePost', {id: WorkID}, function(){
+            $(parent).remove();
+        });
+    })
+
+    $('.EditContent #CaptionInput').keypress(function(event){
+        var Caption = $('#CaptionInput').val();
+        var Parent = $()
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13'){
+                alert("Changing Caption to " + Caption );
         }
     })
 
