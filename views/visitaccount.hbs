@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>
+            YouAccount
+        </title>
+        <link rel="stylesheet" type="text/css"   href="/css/accountpage.css">
+        <script src="scripts/jquery-3.6.0.min.js"></script>
+        <script src="scripts/index.js"></script>
+    </head>
+
+    <body>
+        {{> header}}
+        <!-- Upload Pop Up Here -->
+        <div class="coverPhoto">
+            <!-- Cover Photo Handlebar -->
+            <span class="ChangeCover">
+                <button class="CoverButton">Change Photo</button>
+            </span>
+            <img src={{convertImage CoverPhoto}}>
+        </div>
+        
+        <div class="ProfilePicture">
+            <span class="ChangePFP">
+                <button class="PFPButton">Change Photo</button>
+            </span>
+            <!-- PFP image -->
+            <img src= {{convertImage ProfileImage}}>
+        </div>
+        <div class="userBanner">
+            <h2 id="User">{{username}}</h2>
+            <span id="followers1">
+                <span id="followercount">0 </span><span id="followers">Followers</span>
+            </span>
+            <span id="following1">
+                <span id="followingcount">0 </span><span id="following">Following</span>
+            </span>
+            <button id="followButton" onclick="Follow()">Follow</button>
+            <span id="CommissionBox">
+                <span id="Details1">
+                    <p id="Details">Commission Details</p>
+                    <p id="Email"><a id="email" href="mailto:LegendsFan@art.com">LegendsFan@art.com</a></p>
+                    <p id="Link">YouPortfolio/Account</p>
+                </span>
+            </span> 
+            <p id="Bio">
+                <!-- Bio -->
+                {{Bio}}
+            </p>
+        </div>
+        <h2 id="UserWorks">
+            <span id="Username">{{username}}</span>
+            <span id="Works">Works</span>
+        </h2>
+        <div class="Projects">
+            <!-- User Works HandleBar -->
+            {{#each userworks}}
+                {{> userworks}}
+            {{/each}}
+        </div>
+    </body>
+</html>

@@ -41,6 +41,7 @@ app.post('/uploadcomment', controller.uploadComment);
 app.post('/uploadreply', controller.uploadReply);
 app.get(`/`, controller.getRegister);
 app.get(`/account`, controller.getAccountPage);
+app.get('/VisitAccount',controller.visitAccount);
 app.get(`/home`, controller.getHomepage);
 app.get('/register', controller.getRegister);
 app.get('/login', controller.getLogin);
