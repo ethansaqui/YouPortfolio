@@ -33,6 +33,8 @@ app.post('/uploadpost', upload.single('imageIn') , controller.uploadPost);
 app.post('/ChangePhoto', ProfileUpload.single('ProfileImage'), controller.changePhoto);
 app.post('/ChangeCover', ProfileUpload.single('CoverPhoto'), controller.changeCover);
 app.get('/ChangeBio', controller.changeBio);
+app.get('/ChangeCaption', controller.changeCaption);
+app.get('/DeletePost', controller.DeletePost);
 app.post('/uploadcomment', controller.uploadComment);
 app.post('/uploadreply', controller.uploadReply);
 app.get(`/`, controller.getRegister);

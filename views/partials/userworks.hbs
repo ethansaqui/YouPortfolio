@@ -1,7 +1,8 @@
-<div class="Work">
+<div class="Work" id={{_id}}>
     <img src={{convertImage img}}>
     <span id="OptionShadow">
-        <button class="Delete" id="Delete1" onclick="DeleteWork(this.id)">X</button>
-        <button class="Edit" id="Edit1" onclick="toggleEdit()" >&#9999</button> 
+        {{caption}}
+        <button class="Delete" id="Delete">X</button>
+        <button class="Edit" id="Edit" >&#9999</button> 
     </span>
 </div>
