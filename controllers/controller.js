@@ -102,7 +102,7 @@ const controller = {
                     }, ProfileImage: {
                         data: data,
                         contentType: 'image/png'
-                    }, Bio: "Enter Bio Here" }
+                    }, Bio: "Current Status" }
                     console.log(newUser);
                     db.insertOne(profile, newUser, (err) => {
                         console.log(err);
@@ -218,7 +218,7 @@ const controller = {
     changePhoto: function(req,res,next){
         var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))
         console.log(req.file.filename);
-        var username = "Poije"
+        var username = req.session.name
         var ProfileImage = {
             data: data,
             contentType: 'image/png'
@@ -232,7 +232,7 @@ const controller = {
     changeCover: function(req,res,next){
         var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))
         console.log(req.file.filename);
-        var username = "Poije"
+        var username = req.session.name
         var CoverPhoto = {
             data: data,
             contentType: 'image/png'
@@ -243,6 +243,14 @@ const controller = {
         })
         
     },
+    changeBio: function(req,res) {
+        var Bio = req.query.Bio;
+        var username = req.session.name;
+        db.updateOne(profile, {username: username}, {Bio: Bio}, function(){
+            res.redirect('/account');
+        })
+    },
+
     logoutUser: function(req, res) {
         if (req.session) {
             req.session.destroy(() => {

@@ -12,4 +12,15 @@ $(document).ready(function() {
         $('#CoverPopup').toggleClass("active");
     });
 
+    $('#StatusBar').keypress(function(event){
+        var Bio = $('#StatusBar').val();
+        var keycode = (event.keyCode ? event.keyCode : event.which);
+        if (keycode == '13'){
+            $.get('/ChangeBio', {Bio: Bio}, function(){
+                alert("You entered" + Bio);
+            })
+            
+        }
+    })
+
 })
