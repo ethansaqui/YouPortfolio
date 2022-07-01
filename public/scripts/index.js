@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // Comment Functions
-    const user = "Anya";
+    var user = $(".sessionuser").attr('id');
 
     
     
@@ -92,7 +92,7 @@ $(document).ready(function() {
             console.log(status)
         })
     })
-
+    console.log("this ran")
     // Hide Show Replies for comments without replies
     $(".comment").each(function() {
         let c = $(this);

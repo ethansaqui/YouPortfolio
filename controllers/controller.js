@@ -39,14 +39,18 @@ const controller = {
                 res.render('index', {posts : posts}, () => {
                     db.findMany(Comment, {}, "", (comments) => {
                         db.findMany(profile, {}, "username ProfileImage", (prof) => {
-                            res.render('index', 
-                            {
-                                posts : {
-                                    main : posts, 
-                                    comments : comments,
-                                    user : prof
-                                }
+                            db.findOne(profile, {username : req.session.name}, "", (session) => {
+                                res.render('index', 
+                                {
+                                    posts : {
+                                        main : posts, 
+                                        comments : comments,
+                                        user : prof,
+                                        session : session
+                                    }
+                                })
                             })
+                            
                         })
                         
                     })
