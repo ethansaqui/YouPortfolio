@@ -204,8 +204,21 @@ $(document).ready(function() {
     });
 
     $('.Edit').click(function(){
-       $('#Editpopup').toggleClass("active");
-    })
+        $('#Editpopup').toggleClass("active");
+        var parent = $(this).parent().parent();
+        var WorkID =($(parent).attr('id')); 
+        $('.EditContent #ConfirmUpload').click(function(){
+            var Caption = $('#CaptionInput').val();
+            var ID = WorkID;
+            $('#Editpopup').toggleClass("active");
+            $.get('/ChangeCaption',{Id:ID , Caption:Caption},function(){
+            })
+        })
+     });
+
+     $('.EditContent #Cancel').click(function(){
+        $('#Editpopup').toggleClass("active");
+     });
 
     $('#StatusBar').keypress(function(event){
         var Bio = $('#StatusBar').val();
@@ -216,7 +229,7 @@ $(document).ready(function() {
             })
             
         }
-    })
+    });
 
     $('.Delete').click(function(){
         var parent = $(this).parent().parent();
@@ -224,15 +237,6 @@ $(document).ready(function() {
         $.get('/DeletePost', {id: WorkID}, function(){
             $(parent).remove();
         });
-    })
-
-    $('.EditContent #CaptionInput').keypress(function(event){
-        var Caption = $('#CaptionInput').val();
-        var Parent = $()
-        var keycode = (event.keyCode ? event.keyCode : event.which);
-        if (keycode == '13'){
-                alert("Changing Caption to " + Caption );
-        }
-    })
+    });
 
 })

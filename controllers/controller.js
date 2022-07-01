@@ -259,8 +259,11 @@ const controller = {
     },
 
     changeCaption: function(req,res){
+        var id = req.query.Id;
         var Caption = req.query.Caption;
-        /* Add code to get Image ID Maybe */
+        db.updateOne(Post, {_id: id}, {caption: Caption}, function(){
+            res.redirect('/account');
+        })
     },
 
     DeletePost: function(req,res){
