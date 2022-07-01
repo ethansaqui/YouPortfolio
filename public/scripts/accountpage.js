@@ -8,7 +8,15 @@ $(document).ready(function() {
         $('#PFPPopup').toggleClass("active");
     });
 
+    $('.PFPcontent #Cancel').click(function(){
+        $('#PFPPopup').toggleClass("active");
+    });
+
     $('.CoverButton').click(function(){
+        $('#CoverPopup').toggleClass("active");
+    });
+
+    $('.CoverContent #Cancel').click(function(){
         $('#CoverPopup').toggleClass("active");
     });
 
