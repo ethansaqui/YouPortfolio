@@ -13,10 +13,13 @@ $(document).ready(function() {
     });
 
     $('#StatusBar').keypress(function(event){
-        var Status = $('#StatusBar').val();
+        var Bio = $('#StatusBar').val();
         var keycode = (event.keyCode ? event.keyCode : event.which);
         if (keycode == '13'){
-            alert('You Entered ' + Status);
+            $.get('/ChangeBio', {Bio: Bio}, function(){
+                alert("You entered" + Bio);
+            })
+            
         }
     })
 
