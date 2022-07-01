@@ -205,6 +205,7 @@ $(document).ready(function() {
 
     $('.Edit').click(function(){
         $('#Editpopup').toggleClass("active");
+        $('html, body').animate({ scrollTop: 0 }, 'fast');
         var parent = $(this).parent().parent();
         var WorkID =($(parent).attr('id')); 
         $('.EditContent #ConfirmUpload').click(function(){
