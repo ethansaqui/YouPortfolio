@@ -28,7 +28,6 @@ hbs.registerPartials(__dirname + `/views/partials`);
 
 // for hbs helpers
 hbs.registerHelper('convertImage', (image) => {
-   
     var imageString = image.data.toString('base64');
     var imagePath = "data:" + image.contentType + ";base64," + imageString;
     return imagePath;

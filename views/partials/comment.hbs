@@ -1,4 +1,4 @@
-{{#unless skip_comment}}
+
 <div class="comment" id={{comment._id}}>
     <div class="comment-text">
         <h3>{{ comment.username }}</h3>
@@ -11,12 +11,10 @@
         <div class="show-replies"><span>Show Replies</span></div>
     </div>
 </div>
-{{/unless}}
-{{#each comments}}
+{{#each comments}}  
     {{#if (is_eq this.parentCommentId ../comment._id)}}
         <div class="comment-container">
             {{>comment (combineComments this ../comments)}}
         </div>
     {{/if}}
 {{/each}}
-

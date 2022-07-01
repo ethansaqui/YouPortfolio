@@ -118,7 +118,7 @@ $(document).ready(function() {
     $(".show-replies").text("Hide Replies")
 
     $(".show-replies").on("click", function() {
-        var reply = $(this).closest(".comment").next(".comment-container");
+        var reply = $(this).closest(".comment").siblings(".comment-container");
         if ($(this).html() == "Show Replies") {
             reply.css("display", "block");
             $(this).text("Hide Replies");
