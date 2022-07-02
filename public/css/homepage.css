@@ -545,13 +545,13 @@ a:hover {
     display: inline-block;
 }
 
-#heart>img {
+.heart>img {
     width: 1.5vw;
     height: 1.5vw;
     margin-left: 20%;
 }
 
-#heart {
+.heart {
     width: 50%;
     height: 50%;
     background-color: whitesmoke;
@@ -563,7 +563,7 @@ a:hover {
     padding-top: 0.5vw;
 }
 
-#like-count {
+.like-count {
     width: 100%;
     color: white;
     font-size: 0.69vw;

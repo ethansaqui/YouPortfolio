@@ -53,10 +53,13 @@ hbs.registerHelper('combineComments', function(x, y) {
     return {comment: x, comments: y}
 })
 
-hbs.registerHelper('combinePostImage', function(x, y) {
-    return {user: x, postUser: y}
+hbs.registerHelper('combinePostImage', function(x, y, z, id) {
+    return {user: x, postUser: y, likes : z, id: id}
 })
 
+hbs.registerHelper('isLiked', function(x, y) {
+    return x.includes(y);
+})
 // end of upload code
 
 

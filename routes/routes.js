@@ -34,6 +34,7 @@ app.post('/editcomment', controller.editComment);
 app.post('/deletecomment', controller.deleteComment);
 app.post('/ChangePhoto', ProfileUpload.single('ProfileImage'), controller.changePhoto);
 app.post('/ChangeCover', ProfileUpload.single('CoverPhoto'), controller.changeCover);
+app.post('/updatelikes', controller.updateLikes);
 app.get('/ChangeBio', controller.changeBio);
 app.get('/ChangeCaption', controller.changeCaption);
 app.get('/DeletePost', controller.DeletePost);

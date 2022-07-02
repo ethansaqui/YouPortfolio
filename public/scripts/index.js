@@ -250,6 +250,40 @@ $(document).ready(function() {
         }
     });
 
+    // heart functionality
+    $(".heart").on("click", function() {
+        var likeCount = $(this).siblings(".like-count")
+        var likeButton = $(this).children(".like-button");
+        var liked =  likeButton.attr('liked')
+        var likes;
+        var post = $(this).parents(".post-quality").siblings(".child").find(".post-image").attr('id');
+        console.log(post)
+
+        if(liked == "false") {
+            likeButton.attr('src', "/images/filled-heart.png");
+            likes = likeCount.text();
+            likeCount.html(parseInt(likes) + 1);
+            likeButton.attr('liked', "true")
+        }
+
+        if(liked == "true") {
+            likeButton.attr('src', "/images/empty-heart.png");
+            likes = likeCount.text();
+            likeCount.html(parseInt(likes) - 1);
+            likeButton.attr('liked', "false")
+        }
+
+        var updateLike = {
+            likes : parseInt(likeCount.text()),
+            post : post
+        }
+
+        $.post("/updatelikes", updateLike, () => {
+            
+        })
+        
+    })
+
     // From AccountPage.js
     $('#upload').click(function() {
         $('#uploadpopup').toggleClass("active");

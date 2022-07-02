@@ -327,8 +327,29 @@ const controller = {
         } else {
             res.render('login');
         }
-    }
+    },
 
+    updateLikes: function(req, res) {
+        var post = req.body.post;
+        var likes = req.body.likes;
+        var user = req.session.user;
+        db.updateOne(Post, {_id : post}, {likes : likes}, function() {
+            db.findOne(profile, {_id: user}, "LikedPosts", (result) => {
+                // if not there, add, else remove
+                if(!result.LikedPosts.includes(post)) {
+                    db.updateOne(profile, {_id: user}, {$push : {LikedPosts : post}}, function() {
+                        res.sendStatus(200);
+                    })
+                }
+                else {
+                    db.updateOne(profile, {_id: user}, {$pull : {LikedPosts : post}}, function() {
+                        res.sendStatus(200);
+                    })
+                }
+            })
+            
+        })
+    }
 }
 
 module.exports = controller;

@@ -11,7 +11,8 @@ const ProfileSchema = new mongoose.Schema({
         data: Buffer,
         contentType: String
     },
-    Bio: String
+    Bio: String,
+    LikedPosts: [mongoose.ObjectId]
 })
 
 const Profile = mongoose.model('Profile', ProfileSchema);
