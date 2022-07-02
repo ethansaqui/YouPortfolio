@@ -303,4 +303,9 @@ $(document).ready(function() {
         });
     });
 
+    $('#profile-picture').click(function(){
+        var username = $('#profile-picture').children('img').attr('id');
+        console.log(username);
+    })
+
 })
