@@ -18,18 +18,7 @@
         
         <!-- End of Upload Pop Up-->
         <div class="sidebar">
-            <h1>Categories</h1>
-            <ul style="list-style-type:none">
-                <li><a> Photography </a></li>
-                <li><a> Digital Art </a></li>
-                <li><a> Anime </a></li>
-                <li><a> Animation </a></li>
-                <li><a> Videography </a></li>
-                <li><a> Illustration </a></li>
-                <li><a> UX/UI Design </a></li>
-                <li><a> Graphic Design </a></li>
-                <li><a> Others </a></li>
-            </ul>
+
         <!-- this data should change depending on the user-->
             <h1>Following</h1>
             <ul style="list-style-type:none">
@@ -47,7 +36,7 @@
                 <h1 class="your-feed">
                     Your <span>Feed</span>.
                 </h1>
-                <p class="welcome"> &nbsp The latest and greatest for you, Anya</p>
+                <p class="welcome"> &nbsp The latest and greatest for you, {{posts.session.username}}</p>
             </div>
             
             {{#if posts}}

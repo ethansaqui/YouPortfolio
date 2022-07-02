@@ -8,21 +8,20 @@ h1 {
     user-select: none;
 }
 
-
-html, body {
+html,
+body {
     margin: 0;
     padding: 0;
-    overflow:visible;
+    overflow: visible;
     box-sizing: border-box;
 }
-
 
 .top-page {
     z-index: 10;
     position: fixed;
     width: 100%;
     height: 65px;
-    background:#1F2833;
+    background: #1F2833;
     display: inline-block;
 }
 
@@ -42,12 +41,14 @@ html, body {
     cursor: pointer;
 }
 
+
 /* FROM GABE */
+
 #YouPortfolio {
     font-size: 2vw;
     position: absolute;
     left: 4%;
-    top: 8px; 
+    top: 8px;
     font-family: Poppins;
     user-select: none;
     font-weight: 100;
@@ -57,22 +58,20 @@ html, body {
 
 @media screen and (max-width:767px) {
     #YouPortfolio {
-    font-size: 2vw;
-    position: absolute;
-    left: 4%;
-    top: 8px; 
-    font-family: Poppins;
-    user-select: none;
-    font-weight: 100;
-    color: white;
-    padding: 10px;
+        font-size: 2vw;
+        position: absolute;
+        left: 4%;
+        top: 8px;
+        font-family: Poppins;
+        user-select: none;
+        font-weight: 100;
+        color: white;
+        padding: 10px;
     }
-
     ul {
         padding-left: 10px;
     }
 }
-
 
 #You {
     font-family: Poppins, sans-serif;
@@ -81,10 +80,11 @@ html, body {
 
 #Portfolio {
     font-weight: 800;
-    color: #66FCF1 ;
+    color: #66FCF1;
 }
 
-#upload, #logout{
+#upload,
+#logout {
     position: fixed;
     width: 117px;
     height: 27px;
@@ -101,7 +101,8 @@ html, body {
     z-index: 2;
 }
 
-#upload:hover, #logout:hover {
+#upload:hover,
+#logout:hover {
     cursor: pointer;
     background-color: #1F2833;
     color: #66FCF1;
@@ -113,8 +114,10 @@ html, body {
     right: 100;
 }
 
+
 /* Pop Up Code */
-.popup .overlay{
+
+.popup .overlay {
     position: fixed;
     top: 0px;
     left: 0px;
@@ -125,7 +128,7 @@ html, body {
     display: none;
 }
 
-.popup .Content{
+.popup .Content {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -133,57 +136,61 @@ html, body {
     height: 572px;
     transform: translate(-50%, -50%) scale(0);
     transition: all 300ms ease-in-out;
-    background-color:#1F2833;
+    background-color: #1F2833;
     z-index: 4;
 }
-.popup.active .overlay{
+
+.popup.active .overlay {
     display: block;
 }
-.popup.active .Content{
+
+.popup.active .Content {
     transition: all 300ms ease-in-out;
     transform: translate(-50%, -50%) scale(1);
 }
-.UploadBox{
+
+.UploadBox {
     position: absolute;
     width: 815px;
     height: 382px;
     left: 17px;
-    top: 15px; 
+    top: 15px;
     background: white;
 }
 
-.UploadBox img{
+.UploadBox img {
     width: 100%;
     height: 100%;
     object-fit: contain;
 }
 
-#CaptionBox input[type=caption]{
+#CaptionBox input[type=caption] {
     position: absolute;
     width: 814px;
     height: 89px;
     left: 18px;
     top: 419px;
-    background: white; 
+    background: white;
 }
 
-#ConfirmUpload{
+#ConfirmUpload {
     position: absolute;
     left: 196px;
     top: 530px;
     background-color: #66FCF1;
     border-radius: 35px;
     width: 117px;
-    height: 23px;  
+    height: 23px;
 }
-#Cancel{
+
+#Cancel {
     position: absolute;
     left: 513px;
     top: 530px;
     background-color: #66FCF1;
     border-radius: 35px;
     width: 117px;
-    height: 23px;  
+    height: 23px;
 }
 
 #Cancel:hover {
@@ -193,6 +200,7 @@ html, body {
     font-weight: 400px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
 #ConfirmUpload:hover {
     cursor: pointer;
     background-color: #1F2833;
@@ -200,7 +208,11 @@ html, body {
     font-weight: 400px;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+
 /* End of Pop Up Code */
+
+
 /* END OF GABE CODE */
 
 .searchbar {
@@ -221,7 +233,7 @@ html, body {
     float: left;
     width: 15%;
     height: 100%;
-    background-color: rgba(31,40,51,.9);
+    background-color: rgba(31, 40, 51, .9);
     z-index: 3;
     padding-top: 63px;
     transition: 0.5s;
@@ -242,7 +254,7 @@ html, body {
     color: #1F2833;
 }
 
-.your-feed > span {
+.your-feed>span {
     color: #66FCF1;
 }
 
@@ -253,18 +265,19 @@ html, body {
     color: #1F2833;
 }
 
+
 /* Categories */
-.sidebar > h1 {
+
+.sidebar>h1 {
     margin-top: 20px;
     font: 2vw Poppins;
     font-weight: 700;
-    color:#66FCF1;
+    color: #66FCF1;
     text-align: center;
 }
 
-
-.sidebar > ul > li {
-    color:white;
+.sidebar>ul>li {
+    color: white;
     font: 1vw Poppins;
     font-weight: 400;
     margin: 10 0 0 0;
@@ -277,14 +290,17 @@ a {
 }
 
 a:hover {
-    color:#1F2833;
+    color: #1F2833;
     transition: all 250ms ease-in;
 }
 
+
 /* POSTS */
 
+
 /* Post Image */
-.posts > div {
+
+.posts>div {
     width: 100%;
     padding: 30 0 30 0;
     text-align: center;
@@ -292,7 +308,7 @@ a:hover {
 
 .image-container {
     width: calc(100%);
-    background-size:cover;
+    background-size: cover;
     display: flex;
     position: relative;
     z-index: 1;
@@ -306,6 +322,7 @@ a:hover {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
     transition: 500ms;
 }
+
 
 /* Image Hover Code */
 
@@ -343,7 +360,7 @@ a:hover {
     height: 30%;
     width: 80%;
     font-family: Poppins;
-    font-size: clamp(0.1vw,1vw,2vw);
+    font-size: clamp(0.1vw, 1vw, 2vw);
     margin-top: 1vh;
     margin-left: 1vw;
 }
@@ -360,7 +377,9 @@ a:hover {
     top: 0;
 }
 
+
 /* Comments */
+
 #no-comment {
     width: 100%;
     font: 17px Poppins;
@@ -369,10 +388,10 @@ a:hover {
 }
 
 .comment-box {
-    background-color:rgb(31,40,51,.8);
+    background-color: rgb(31, 40, 51, .8);
     border-radius: 20px;
     margin-top: -25;
-    overflow-y:scroll;
+    overflow-y: scroll;
     overflow-x: hidden;
     width: 60vw;
     height: 17vw;
@@ -398,19 +417,21 @@ a:hover {
 .comment {
     padding: 15;
     margin: 10 10;
-    border: 1px solid rgb(31,40,51,.3);
+    border: 1px solid rgb(31, 40, 51, .3);
     border-radius: 20px;
 }
 
 .comment-text {
     font: 17px Poppins;
-    color:white;
+    color: white;
     text-align: left;
 }
 
-.comment h3, .comment p, .comment-button {
+.comment h3,
+.comment p,
+.comment-button {
     margin-bottom: 0.5rem;
-} 
+}
 
 .comment-footer {
     display: flex;
@@ -419,25 +440,32 @@ a:hover {
     justify-content: flex-end;
 }
 
-.comment-footer div, .comment-button span {
+.comment-footer div,
+.comment-button span {
     font: 10px Poppins;
     font-weight: 600;
     color: white;
 }
 
-.comment-footer div:hover, .comment-button span:hover {
-    color:rgb(182, 179, 179);
+.comment-footer div:hover,
+.comment-button span:hover {
+    color: rgb(182, 179, 179);
     cursor: pointer;
 }
 
-#comment, #reply, #edit{
+#comment,
+#reply,
+#edit {
     width: 60%;
     margin: 0 40px;
 }
 
-
-
-#submit-comment, #cancel-comment, #submit-reply, #cancel-reply, #submit-edit, #cancel-edit{
+#submit-comment,
+#cancel-comment,
+#submit-reply,
+#cancel-reply,
+#submit-edit,
+#cancel-edit {
     background-color: #1F2833;
     border: none;
     color: white;
@@ -449,10 +477,13 @@ a:hover {
     z-index: 10;
 }
 
-#cancel-comment, #cancel-reply, #cancel-edit {
+#cancel-comment,
+#cancel-reply,
+#cancel-edit {
     background-color: transparent;
     font-size: 25px;
 }
+
 
 /* Post Info and Quality */
 
@@ -467,7 +498,7 @@ a:hover {
     padding: 0;
     display: inline-block;
     font-size: 0;
-    background-color: rgb(31,40,51,.8);
+    background-color: rgb(31, 40, 51, .8);
     width: 5vw;
     height: 10vw;
 }
@@ -475,13 +506,13 @@ a:hover {
 .likes {
     width: 5vw;
     height: 5vw;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .profile-pic-container {
     width: 5vw;
     height: 5vw;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .posts-wrapper #profile-picture {
@@ -489,7 +520,7 @@ a:hover {
     height: 60%;
     mix-blend-mode: normal;
     border-radius: 50%;
-    margin-left:20%;
+    margin-left: 20%;
     margin-top: 0.5vw;
     box-sizing: border-box;
     padding-top: 0.5vw;
@@ -498,7 +529,7 @@ a:hover {
     align-items: center;
 }
 
-#profile-picture > img {
+#profile-picture>img {
     border-radius: 50%;
     min-width: 100%;
     min-height: 100%;
@@ -507,16 +538,17 @@ a:hover {
 
 .parent {
     padding-top: 30;
-    font-size:0;
+    font-size: 0;
 }
 
 .child {
     display: inline-block;
 }
 
-#heart > img {
+#heart>img {
     width: 1.5vw;
     height: 1.5vw;
+    margin-left: 20%;
 }
 
 #heart {
@@ -525,7 +557,7 @@ a:hover {
     background-color: whitesmoke;
     mix-blend-mode: normal;
     border-radius: 50%;
-    margin-left:25%;
+    margin-left: 25%;
     margin-top: 1vw;
     box-sizing: border-box;
     padding-top: 0.5vw;
@@ -543,40 +575,50 @@ a:hover {
     margin-top: 0.2vw;
 }
 
+
 /* SCROLL BAR CODE
     Taken From: https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_scrollbar
 */
 
+
 /* width */
+
 ::-webkit-scrollbar {
     width: 5px;
     height: auto;
-  }
-  
-  /* Track */
-  ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
-    border-radius: 10px;
-  }
-   
-  /* Handle */
-  ::-webkit-scrollbar-thumb {
-    background: #888; 
-    border-radius: 10px;
-  }
-  
-  /* Handle on hover */
-  ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
-  }
+}
 
-  /* Popup modal for images */
+
+/* Track */
+
+ ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+
+/* Handle */
+
+ ::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+
+/* Handle on hover */
+
+ ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+
+/* Popup modal for images */
 
 .posts-wrapper .popup-image {
     position: fixed;
-    top:0;
-    left:0;
-    background:rgba(0,0,0,.99);
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, .99);
     height: 100%;
     width: 100%;
     z-index: 100;
@@ -585,7 +627,7 @@ a:hover {
 
 .posts-wrapper .popup-image span {
     position: absolute;
-    top:0;
+    top: 0;
     right: 10px;
     font-size: 40px;
     font-weight: bolder;
@@ -593,7 +635,6 @@ a:hover {
     cursor: pointer;
     z-index: 100;
 }
-
 
 .posts-wrapper .popup-image .popup {
     position: absolute;
@@ -608,7 +649,7 @@ a:hover {
     position: fixed;
     width: 80vw;
     height: 10vh;
-    font-size:17px;
+    font-size: 17px;
     top: 10;
     left: 10;
 }
@@ -616,7 +657,7 @@ a:hover {
 .popup-image .profile-pic-container {
     height: 5vw;
     width: 5vw;
-    top:10;
+    top: 10;
     right: 50;
     position: fixed;
 }
@@ -626,12 +667,11 @@ a:hover {
     height: 100%;
     mix-blend-mode: normal;
     border-radius: 50%;
-    margin-left:0;
-    margin-top:0;
+    margin-left: 0;
+    margin-top: 0;
     box-sizing: border-box;
     padding-top: 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
