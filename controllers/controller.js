@@ -36,26 +36,24 @@ const controller = {
     getHomepage: function(req, res) {
         if(req.session.user) {
             db.findMany(Post, {}, "", (posts) => {
-                res.render('index', {posts : posts}, () => {
-                    db.findMany(Comment, {}, "", (comments) => {
-                        db.findMany(profile, {}, "username ProfileImage", (prof) => {
-                            db.findOne(profile, {username : req.session.name}, "", (session) => {
-                                res.render('index', 
-                                {
-                                    posts : {
-                                        main : posts, 
-                                        comments : comments,
-                                        user : prof,
-                                        session : session,
-                                        
-                                    }
-                                })
+                db.findMany(Comment, {}, "", (comments) => {
+                    db.findMany(profile, {}, "username ProfileImage", (prof) => {
+                        db.findOne(profile, {username : req.session.name}, "", (session) => {
+                            res.render('index', 
+                            {
+                                posts : {
+                                    main : posts, 
+                                    comments : comments,
+                                    user : prof,
+                                    session : session,
+                                    
+                                }
                             })
-                            
                         })
                         
                     })
-                });  
+                    
+                }) 
             })
         }
         else {
