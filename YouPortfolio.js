@@ -57,6 +57,15 @@ hbs.registerHelper('combinePostImage', function(x, y, z, id) {
     return {user: x, postUser: y, likes : z, id: id}
 })
 
+hbs.registerHelper('isInObjArray', function(x, y) {
+    var result = false;
+    x.map(function(value) {
+        if(value.id == y)
+            result = true;
+    })
+    return result;
+})
+
 hbs.registerHelper('isInArray', function(x, y) {
     return x.includes(y);
 })

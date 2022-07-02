@@ -14,8 +14,14 @@ const ProfileSchema = new mongoose.Schema({
     Bio: String,
     LikedPosts: [mongoose.ObjectId],
     FollowData: {
-        followers: [mongoose.ObjectId],
-        following: [mongoose.ObjectId]
+        followers: [{
+            id: mongoose.ObjectId, 
+            username: String
+        }],
+        following: [{
+            id: mongoose.ObjectId, 
+            username: String
+        }]
     }
 })
 

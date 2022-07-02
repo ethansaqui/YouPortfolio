@@ -285,6 +285,8 @@ $(document).ready(function() {
         
     })
 
+
+    // follow functionality
     $("#followButton").click(function() {
         var followButton = $(this);
         var following = followButton.attr('following');
@@ -313,7 +315,20 @@ $(document).ready(function() {
             if(err)
                 console.log(err)
         }) 
+    })
 
+    //followinglist functionality
+    
+    $(".followingName").click(function() {
+        var username = $(this).text();
+        var sessionUser = $('.sessionuser').attr('id');
+        console.log("/VisitAccount/"+username)
+        if (sessionUser == username){
+            location.href="/account";
+        }
+        else{
+            location.href="/VisitAccount/"+username;
+        }
     })
 
     // From AccountPage.js

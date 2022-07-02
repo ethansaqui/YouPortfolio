@@ -46,7 +46,8 @@ const controller = {
                                         main : posts, 
                                         comments : comments,
                                         user : prof,
-                                        session : session
+                                        session : session,
+                                        
                                     }
                                 })
                             })
@@ -355,18 +356,28 @@ const controller = {
     
     followUser: function(req, res) {
         var user = req.session.user;
+        var name = req.session.name;
         var affectedUser = req.body.user;
-        db.findOne(profile, {username: affectedUser}, "_id FollowData", (result) => {
-            if(!result.FollowData.followers.includes(user)) {
-                db.updateOne(profile, {_id : user}, {$push : {'FollowData.following' : result._id}}, () => {
+        db.findOne(profile, {username: affectedUser}, "_id FollowData username", (result) => {
+            var included = false
+            included = result.FollowData.followers.some(e => {
+                if(e.id.equals(user)) {
+                    return true;
+                }
+            })
+            if(!included) {
+                db.updateOne(profile, {_id : user}, {$push : {'FollowData.following' : {id : result._id, username : result.username}}}, () => {
+
                 })
-                db.updateOne(profile, {_id : result}, {$push : {'FollowData.followers' : user}}, () => {
+                db.updateOne(profile, {_id : result}, {$push : {'FollowData.followers' : {id : user, username : name}}}, () => {
                 })
             }
             else {
-                db.updateOne(profile, {_id : user}, {$pull : {'FollowData.following' : result._id}}, () => {
+                db.updateOne(profile, {_id : user}, {$pull : {'FollowData.following' : {id : result._id, username : result.username}}}, () => {
+                  
                 })
-                db.updateOne(profile, {_id : result}, {$pull : {'FollowData.followers' : user}}, () => {
+                db.updateOne(profile, {_id : result}, {$pull : {'FollowData.followers' : {id : user, username : name}}}, () => {
+                
                 })
             }
         })

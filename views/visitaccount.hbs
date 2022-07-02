@@ -28,7 +28,8 @@
             <span id="following1">
                 <span id="followingcount">{{arrayCount FollowData.following}}</span><span id="following">Following</span>
             </span>
-            {{#if (isInArray FollowData.followers visitor)}}
+            
+            {{#if (isInObjArray FollowData.followers visitor)}}
                 <button id="followButton" following="true">Unfollow</button>
             {{else}}
                 <button id="followButton" following="false">Follow</button>

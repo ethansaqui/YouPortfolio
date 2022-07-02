@@ -1,3 +1,4 @@
+{{log posts.session.FollowData.following}}
 <html>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <head>
@@ -22,12 +23,9 @@
         <!-- this data should change depending on the user-->
             <h1>Following</h1>
             <ul style="list-style-type:none">
-                <li><a> TheLegend69 </a></li>
-                <li><a> Ramdayo </a></li>
-                <li><a> Velephyr </a></li>
-                <li><a> Shire </a></li>
-                <li><a> GawrGuna </a></li>
-                <li><a> Kannare </a></li>
+                {{#each posts.session.FollowData.following}}
+                <li class="followingName"><a>{{username}}</a></li>
+                {{/each}}
             </ul>
         </div>
 
