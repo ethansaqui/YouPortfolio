@@ -94,7 +94,6 @@ const controller = {
             Projects = result;
             db.findOne(profile, {username: VisitorName}, 'username ProfileImage', function(result){
                 Visitor = result.ProfileImage;
-                console.log(result);
                 db.findOne(profile, {username: username}, projection, function(result){
                     var data = {
                         ProfileImage: Visitor,

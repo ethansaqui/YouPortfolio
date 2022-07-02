@@ -304,9 +304,18 @@ $(document).ready(function() {
     });
 
     $('.profile-pic-container').click(function(){
-        var children = $('.profile-pic-container').children();
+        var children = $(this).children();
         var username = $(children).children('img').attr('id');
-        location.href="/VisitAccount/"+username;
+        var sessionUser = $('.sessionuser').attr('id');
+        console.log(sessionUser);
+        console.log(username)
+        if (sessionUser == username){
+            location.href="/account";
+        }
+        else{
+            location.href="/VisitAccount/"+username;
+        }
+       
     });
 
 })
