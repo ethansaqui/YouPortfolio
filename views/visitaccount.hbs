@@ -9,22 +9,18 @@
     </head>
 
     <body>
+        {{log VisitorName}}
+        {{log username}}
         {{> header}}
         <!-- Upload Pop Up Here -->
         <div class="coverPhoto">
             <!-- Cover Photo Handlebar -->
-            <span class="ChangeCover">
-                <button class="CoverButton">Change Photo</button>
-            </span>
             <img src={{convertImage CoverPhoto}}>
         </div>
         
         <div class="ProfilePicture">
-            <span class="ChangePFP">
-                <button class="PFPButton">Change Photo</button>
-            </span>
             <!-- PFP image -->
-            <img src= {{convertImage ProfileImage}}>
+            <img src= {{convertImage VisitImage}}>
         </div>
         <div class="userBanner">
             <h2 id="User">{{username}}</h2>
@@ -53,8 +49,8 @@
         </h2>
         <div class="Projects">
             <!-- User Works HandleBar -->
-            {{#each userworks}}
-                {{> userworks}}
+            {{#each visitworks}}
+                {{> visitworks}}
             {{/each}}
         </div>
     </body>

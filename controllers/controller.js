@@ -85,20 +85,27 @@ const controller = {
     },
 
     visitAccount: function(req,res){
-        var username = req.query.name;
+        var username = req.params.id;
+        var VisitorName = req.session.name;
         var projection = "username CoverPhoto ProfileImage Bio";
         var Projects
+        console.log("Doing This with" + VisitorName);
         db.findMany(Post, {artist:username}, 'img caption', function(result){
             Projects = result;
-            db.findOne(profile, {username: username}, projection, function(result){
-                var data = {
-                    username: result.username,
-                    CoverPhoto: result.CoverPhoto,
-                    ProfileImage: result.ProfileImage,
-                    Bio: result.Bio,
-                    userworks: Projects
-                }
-                res.render('visitaccount', data);
+            db.findOne(profile, {username: VisitorName}, 'username ProfileImage', function(result){
+                Visitor = result.ProfileImage;
+                console.log(result);
+                db.findOne(profile, {username: username}, projection, function(result){
+                    var data = {
+                        ProfileImage: Visitor,
+                        username: result.username,
+                        CoverPhoto: result.CoverPhoto,
+                        VisitImage: result.ProfileImage,
+                        Bio: result.Bio,
+                        visitworks: Projects
+                    }
+                    res.render('visitaccount', data);
+                });
             });
         });
     },

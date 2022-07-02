@@ -303,9 +303,10 @@ $(document).ready(function() {
         });
     });
 
-    $('#profile-picture').click(function(){
-        var username = $('#profile-picture').children('img').attr('id');
-        console.log(username);
-    })
+    $('.profile-pic-container').click(function(){
+        var children = $('.profile-pic-container').children();
+        var username = $(children).children('img').attr('id');
+        location.href="/VisitAccount/"+username;
+    });
 
 })

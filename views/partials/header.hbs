@@ -6,11 +6,12 @@
         </form>
     </div>
         <h1 id="YouPortfolio">
-            <span id="You">You</span><span id="Portfolio">Portfolio</span>. 
+          <a href="/home"><span id="You">You</span><span id="Portfolio">Portfolio</span>.</a>  
         </h1>
         <button id="upload" onclick="toggleUpload()">Upload</button>
         <a href="/logout"><button id="logout">Logout</button></a>
     <div class="nav-bar-profile">
+        {{log username}}
         <a href="/account"><img class="nav-bar-pfp" src={{convertImage ProfileImage}}></a>
     </div>
 </nav>
