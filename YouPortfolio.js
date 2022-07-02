@@ -57,8 +57,12 @@ hbs.registerHelper('combinePostImage', function(x, y, z, id) {
     return {user: x, postUser: y, likes : z, id: id}
 })
 
-hbs.registerHelper('isLiked', function(x, y) {
+hbs.registerHelper('isInArray', function(x, y) {
     return x.includes(y);
+})
+
+hbs.registerHelper('arrayCount', function(x) {
+    return x.length;
 })
 // end of upload code
 

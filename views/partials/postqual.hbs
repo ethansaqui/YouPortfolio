@@ -1,10 +1,8 @@
 <div class="post-quality">
     <div class="likes">
         <div class="heart">
-            {{log this}}
-            {{log user.session.LikedPosts id}}
             {{! I know the naming convention is bad but I cant do anything about it anymore user.id = post id}}
-            {{#unless (isLiked user.session.LikedPosts id)}}
+            {{#unless (isInArray user.session.LikedPosts id)}}
             <img class="like-button" liked="false" src="/images/empty-heart.png"/>
             {{else}}
             <img class="like-button" liked="true" src="/images/filled-heart.png"/>

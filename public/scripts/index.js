@@ -278,10 +278,42 @@ $(document).ready(function() {
             post : post
         }
 
-        $.post("/updatelikes", updateLike, () => {
-            
+        $.post("/updatelikes", updateLike, (err) => {
+            if(err)
+                console.log(err)
         })
         
+    })
+
+    $("#followButton").click(function() {
+        var followButton = $(this);
+        var following = followButton.attr('following');
+        var user = $("#User").html();
+        var followers = $("#followercount");
+        console.log(user)
+        if(following == "false") {
+            followButton.text("Unfollow");
+            followButton.attr('following', "true");
+            var follows = followers.text();
+            followers.text(parseInt(follows) + 1)
+        }
+
+        if(following == "true") {
+            followButton.text("Follow");
+            followButton.attr('following', "false");
+            var follows = followers.text();
+            followers.text(parseInt(follows) - 1)
+        }
+        
+        var pass = {
+            user : user
+        }
+
+        $.post('/followuser', pass, (err) => {
+            if(err)
+                console.log(err)
+        }) 
+
     })
 
     // From AccountPage.js

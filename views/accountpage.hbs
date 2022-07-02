@@ -1,3 +1,4 @@
+{{log this}}
 <html>
     <head>
         <title>
@@ -54,12 +55,11 @@
         <div class="userBanner">
             <h2 id="User">{{username}}</h2>
             <span id="followers1">
-                <span id="followercount">0 </span><span id="followers">Followers</span>
+                <span id="followercount">{{arrayCount FollowData.followers}}</span><span id="followers">Followers</span>
             </span>
             <span id="following1">
-                <span id="followingcount">0 </span><span id="following">Following</span>
+                <span id="followingcount">{{arrayCount FollowData.following}}</span><span id="following">Following</span>
             </span>
-            <button id="followButton" onclick="Follow()">Follow</button> 
             <p id="Bio">
                 <!-- Bio -->
                 {{Bio}}

@@ -12,7 +12,11 @@ const ProfileSchema = new mongoose.Schema({
         contentType: String
     },
     Bio: String,
-    LikedPosts: [mongoose.ObjectId]
+    LikedPosts: [mongoose.ObjectId],
+    FollowData: {
+        followers: [mongoose.ObjectId],
+        following: [mongoose.ObjectId]
+    }
 })
 
 const Profile = mongoose.model('Profile', ProfileSchema);

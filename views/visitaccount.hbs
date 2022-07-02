@@ -4,8 +4,8 @@
             YouAccount
         </title>
         <link rel="stylesheet" type="text/css"   href="/css/accountpage.css">
-        <script src="scripts/jquery-3.6.0.min.js"></script>
-        <script src="scripts/index.js"></script>
+        <script src="../scripts/jquery-3.6.0.min.js"></script>
+        <script src="../scripts/index.js"></script>
     </head>
 
     <body>
@@ -23,12 +23,16 @@
         <div class="userBanner">
             <h2 id="User">{{username}}</h2>
             <span id="followers1">
-                <span id="followercount">0 </span><span id="followers">Followers</span>
+                <span id="followercount">{{arrayCount FollowData.followers}}</span><span id="followers">Followers</span>
             </span>
             <span id="following1">
-                <span id="followingcount">0 </span><span id="following">Following</span>
+                <span id="followingcount">{{arrayCount FollowData.following}}</span><span id="following">Following</span>
             </span>
-            <button id="followButton" onclick="Follow()">Follow</button>
+            {{#if (isInArray FollowData.followers visitor)}}
+                <button id="followButton" following="true">Unfollow</button>
+            {{else}}
+                <button id="followButton" following="false">Follow</button>
+            {{/if}}
             <span id="CommissionBox">
                 <span id="Details1">
                     <p id="Details">Commission Details</p>

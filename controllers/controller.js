@@ -67,7 +67,7 @@ const controller = {
     },
     getAccountPage: function(req, res) {
         var username = req.session.name;
-        var projection = "username CoverPhoto ProfileImage Bio";
+        var projection = "username CoverPhoto ProfileImage Bio FollowData";
         var Projects
         db.findMany(Post, {artist:username}, 'img caption', function(result){
             Projects = result;
@@ -77,6 +77,7 @@ const controller = {
                     CoverPhoto: result.CoverPhoto,
                     ProfileImage: result.ProfileImage,
                     Bio: result.Bio,
+                    FollowData: result.FollowData,
                     userworks: Projects
                 }
                 res.render('accountpage', data);
@@ -87,9 +88,8 @@ const controller = {
     visitAccount: function(req,res){
         var username = req.params.id;
         var VisitorName = req.session.name;
-        var projection = "username CoverPhoto ProfileImage Bio";
+        var projection = "username CoverPhoto ProfileImage Bio FollowData";
         var Projects
-        console.log("Doing This with" + VisitorName);
         db.findMany(Post, {artist:username}, 'img caption', function(result){
             Projects = result;
             db.findOne(profile, {username: VisitorName}, 'username ProfileImage', function(result){
@@ -101,7 +101,9 @@ const controller = {
                         CoverPhoto: result.CoverPhoto,
                         VisitImage: result.ProfileImage,
                         Bio: result.Bio,
-                        visitworks: Projects
+                        FollowData: result.FollowData,
+                        visitworks: Projects,
+                        visitor: req.session.user
                     }
                     res.render('visitaccount', data);
                 });
@@ -348,6 +350,25 @@ const controller = {
                 }
             })
             
+        })
+    },
+    
+    followUser: function(req, res) {
+        var user = req.session.user;
+        var affectedUser = req.body.user;
+        db.findOne(profile, {username: affectedUser}, "_id FollowData", (result) => {
+            if(!result.FollowData.followers.includes(user)) {
+                db.updateOne(profile, {_id : user}, {$push : {'FollowData.following' : result._id}}, () => {
+                })
+                db.updateOne(profile, {_id : result}, {$push : {'FollowData.followers' : user}}, () => {
+                })
+            }
+            else {
+                db.updateOne(profile, {_id : user}, {$pull : {'FollowData.following' : result._id}}, () => {
+                })
+                db.updateOne(profile, {_id : result}, {$pull : {'FollowData.followers' : user}}, () => {
+                })
+            }
         })
     }
 }
