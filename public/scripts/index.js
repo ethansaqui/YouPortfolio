@@ -223,26 +223,31 @@ $(document).ready(function() {
         img.src = imgsrc;
         if (img.width > img.height) {
             $(this).width = img.height;
+            
         }
     });
 
     $("#ConfirmUpload").click(() => {
         console.log("TEST")
         var formData =  new FormData($("#uploadForm").get(0));
-        console.log(formData)
-        $.ajax({
-            type: "POST",
-            url: "/uploadPost",
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(r){
-                console.log("result",r)
-            },
-            error: function (e) {
-                console.log("some error", e);
-            }
-        });
+        if($("#captionIn").val() != "" && $("#imageIn").val() != "") {
+            $.ajax({
+                type: "POST",
+                url: "/uploadPost",
+                data: formData,
+                processData: false,
+                contentType: false,
+                success: function(r){
+                    console.log("result",r)
+                },
+                error: function (e) {
+                    console.log("some error", e);
+                }
+            });
+        }
+        else {
+            console.log("empty")
+        }
     });
 
     // From AccountPage.js
@@ -250,11 +255,16 @@ $(document).ready(function() {
         $('#uploadpopup').toggleClass("active");
     });
 
+    $("#Cancel").click(function() {
+        $('#uploadpopup').toggleClass("active");
+    })
+
     $('.PFPButton').click(function() {
         $('#PFPPopup').toggleClass("active");
     });
 
     $('.PFPcontent #Cancel').click(function(){
+        console.log(' this runs ')
         $('#PFPPopup').toggleClass("active");
     });
 

@@ -211,9 +211,9 @@ const controller = {
         }
     },
     uploadPost: function(req, res, next) {
-        console.log("test")
-        var data = fs.readFileSync(path.join(__dirname + `/../public/postImages/` + req.file.filename))
-        var tempPost = {
+        if(req.body.captionIn != "" && typeof req.file !== 'undefined'){
+            var data = fs.readFileSync(path.join(__dirname + `/../public/postImages/` + req.file.filename))
+            var tempPost = {
             caption: req.body.captionIn,
             img: {
                 data: data,
@@ -223,10 +223,11 @@ const controller = {
             likes: 0,
             artistPicture: "no-pic"
         }
-        
-        db.insertOne(Post, tempPost, (err) => {
+            db.insertOne(Post, tempPost, (err) => {
             
-        })
+            })
+        }
+        
     },
     uploadComment: function(req, res) {
         
