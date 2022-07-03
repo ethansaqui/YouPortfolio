@@ -7,7 +7,7 @@ const Comment = require(`../database/models/Comment`);
 const { validationResult } = require('express-validator');
 const { isPrivate } = require('../middlewares/checkAuth');
 
-const bcrypt = require('bcrypt');
+const bcrypt = require('bcryptjs');
 var fs = require('fs');
 var path = require('path');
 const M = require('minimatch');
@@ -34,32 +34,30 @@ const controller = {
         }
     },
     getHomepage: function(req, res) {
-        if(req.session.user) {
+        if (req.session.user) {
             db.findMany(Post, {}, "", (posts) => {
                 db.findMany(Comment, {}, "", (comments) => {
                     db.findMany(profile, {}, "username ProfileImage", (prof) => {
-                        db.findOne(profile, {username : req.session.name}, "", (session) => {
-                            res.render('index', 
-                            {
-                                posts : {
-                                    main : posts, 
-                                    comments : comments,
-                                    user : prof,
-                                    session : session,
-                                    
+                        db.findOne(profile, { username: req.session.name }, "", (session) => {
+                            res.render('index', {
+                                posts: {
+                                    main: posts,
+                                    comments: comments,
+                                    user: prof,
+                                    session: session,
+
                                 }
                             })
                         })
-                        
+
                     })
-                    
-                }) 
+
+                })
             })
-        }
-        else {
+        } else {
             res.redirect("/login");
         }
-        
+
 
         // load comments
 
@@ -68,9 +66,9 @@ const controller = {
         var username = req.session.name;
         var projection = "username CoverPhoto ProfileImage Bio FollowData";
         var Projects
-        db.findMany(Post, {artist:username}, 'img caption', function(result){
+        db.findMany(Post, { artist: username }, 'img caption', function(result) {
             Projects = result;
-            db.findOne(profile, {username: username}, projection, function(result){
+            db.findOne(profile, { username: username }, projection, function(result) {
                 db.findMany(profile, {}, "username ProfileImage", function(users) {
                     var data = {
                         username: result.username,
@@ -83,20 +81,20 @@ const controller = {
                     }
                     res.render('accountpage', data);
                 })
-                
+
             });
         });
     },
-    visitAccount: function(req,res){
+    visitAccount: function(req, res) {
         var username = req.params.id;
         var VisitorName = req.session.name;
         var projection = "username CoverPhoto ProfileImage Bio FollowData";
         var Projects
-        db.findMany(Post, {artist:username}, 'img caption', function(result){
+        db.findMany(Post, { artist: username }, 'img caption', function(result) {
             Projects = result;
-            db.findOne(profile, {username: VisitorName}, 'username ProfileImage', function(result){
+            db.findOne(profile, { username: VisitorName }, 'username ProfileImage', function(result) {
                 Visitor = result.ProfileImage;
-                db.findOne(profile, {username: username}, projection, function(result){
+                db.findOne(profile, { username: username }, projection, function(result) {
                     db.findMany(profile, {}, "username ProfileImage", function(users) {
                         var data = {
                         ProfileImage: Visitor,
@@ -112,7 +110,7 @@ const controller = {
                         }
                         res.render('visitaccount', data);
                     })
-                    
+
                 });
             });
         });
@@ -137,13 +135,19 @@ const controller = {
                     var newUser;
                     console.log("HERE2")
                     password = await bcrypt.hash(password, saltRound);
-                    newUser = { username: username, password: password, CoverPhoto:{
-                        data: coverdata,
-                        contentType: 'image/png'
-                    }, ProfileImage: {
-                        data: data,
-                        contentType: 'image/png'
-                    }, Bio: "Current Status" }
+                    newUser = {
+                        username: username,
+                        password: password,
+                        CoverPhoto: {
+                            data: coverdata,
+                            contentType: 'image/png'
+                        },
+                        ProfileImage: {
+                            data: data,
+                            contentType: 'image/png'
+                        },
+                        Bio: "Current Status"
+                    }
                     console.log(newUser);
                     db.insertOne(profile, newUser, (err) => {
                         console.log(err);
@@ -218,26 +222,26 @@ const controller = {
         }
     },
     uploadPost: function(req, res, next) {
-        if(req.body.captionIn != "" && typeof req.file !== 'undefined'){
+        if (req.body.captionIn != "" && typeof req.file !== 'undefined') {
             var data = fs.readFileSync(path.join(__dirname + `/../public/postImages/` + req.file.filename))
             var tempPost = {
-            caption: req.body.captionIn,
-            img: {
-                data: data,
-                contentType: 'image/png'  
-            },
-            artist: req.session.name,
-            likes: 0,
-            artistPicture: "no-pic"
-        }
+                caption: req.body.captionIn,
+                img: {
+                    data: data,
+                    contentType: 'image/png'
+                },
+                artist: req.session.name,
+                likes: 0,
+                artistPicture: "no-pic"
+            }
             db.insertOne(Post, tempPost, (err) => {
-            
+
             })
         }
-        
+
     },
     uploadComment: function(req, res) {
-        
+
         var tempComment = {
             postId: req.body.postID,
             parentCommentId: null,
@@ -260,18 +264,18 @@ const controller = {
         })
     },
     editComment: function(req, res) {
-        db.updateOne(Comment, {_id:req.body.commentID}, {content: req.body.edit}, function() {
+        db.updateOne(Comment, { _id: req.body.commentID }, { content: req.body.edit }, function() {
             res.sendStatus(200)
         })
     },
     deleteComment: function(req, res) {
-        db.deleteOne(Comment, {_id : req.body.commentID}, function() {
-            db.deleteMany(Comment, {parentCommentId : req.body.commentID}, function() {
+        db.deleteOne(Comment, { _id: req.body.commentID }, function() {
+            db.deleteMany(Comment, { parentCommentId: req.body.commentID }, function() {
                 res.redirect('/home');
             })
         })
     },
-    changePhoto: function(req,res,next){
+    changePhoto: function(req, res, next) {
         var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))
         console.log(req.file.filename);
         var username = req.session.name
@@ -279,41 +283,41 @@ const controller = {
             data: data,
             contentType: 'image/png'
         }
-        db.updateOne(profile, {username: username}, {ProfileImage: ProfileImage},function(){
+        db.updateOne(profile, { username: username }, { ProfileImage: ProfileImage }, function() {
             console.log("Update Done");
             res.redirect('/account');
         })
-        
+
     },
-    changeCover: function(req,res,next){
+    changeCover: function(req, res, next) {
         var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))
         var username = req.session.name
         var CoverPhoto = {
             data: data,
             contentType: 'image/png'
         }
-        db.updateOne(profile, {username: username}, {CoverPhoto: CoverPhoto},function(){
+        db.updateOne(profile, { username: username }, { CoverPhoto: CoverPhoto }, function() {
             res.redirect('/account');
         })
-        
+
     },
-    changeBio: function(req,res) {
+    changeBio: function(req, res) {
         var Bio = req.query.Bio;
         var username = req.session.name;
-        db.updateOne(profile, {username: username}, {Bio: Bio}, function(){
+        db.updateOne(profile, { username: username }, { Bio: Bio }, function() {
             res.redirect('/account');
         })
     },
-    changeCaption: function(req,res){
+    changeCaption: function(req, res) {
         var id = req.query.Id;
         var Caption = req.query.Caption;
-        db.updateOne(Post, {_id: id}, {caption: Caption}, function(){
+        db.updateOne(Post, { _id: id }, { caption: Caption }, function() {
             res.redirect('/account');
         })
     },
-    DeletePost: function(req,res){
+    DeletePost: function(req, res) {
         var id = req.query.id;
-        db.deleteOne(Post, {_id:id}, function(){
+        db.deleteOne(Post, { _id: id }, function() {
             res.redirect('/account');
         });
     },
@@ -331,47 +335,44 @@ const controller = {
         var post = req.body.post;
         var likes = req.body.likes;
         var user = req.session.user;
-        db.updateOne(Post, {_id : post}, {likes : likes}, function() {
-            db.findOne(profile, {_id: user}, "LikedPosts", (result) => {
+        db.updateOne(Post, { _id: post }, { likes: likes }, function() {
+            db.findOne(profile, { _id: user }, "LikedPosts", (result) => {
                 // if not there, add, else remove
-                if(!result.LikedPosts.includes(post)) {
-                    db.updateOne(profile, {_id: user}, {$push : {LikedPosts : post}}, function() {
+                if (!result.LikedPosts.includes(post)) {
+                    db.updateOne(profile, { _id: user }, { $push: { LikedPosts: post } }, function() {
                         res.sendStatus(200);
                     })
-                }
-                else {
-                    db.updateOne(profile, {_id: user}, {$pull : {LikedPosts : post}}, function() {
+                } else {
+                    db.updateOne(profile, { _id: user }, { $pull: { LikedPosts: post } }, function() {
                         res.sendStatus(200);
                     })
                 }
             })
-            
+
         })
     },
     followUser: function(req, res) {
         var user = req.session.user;
         var name = req.session.name;
         var affectedUser = req.body.user;
-        db.findOne(profile, {username: affectedUser}, "_id FollowData username", (result) => {
+        db.findOne(profile, { username: affectedUser }, "_id FollowData username", (result) => {
             var included = false
             included = result.FollowData.followers.some(e => {
-                if(e.id.equals(user)) {
+                if (e.id.equals(user)) {
                     return true;
                 }
             })
-            if(!included) {
-                db.updateOne(profile, {_id : user}, {$push : {'FollowData.following' : {id : result._id, username : result.username}}}, () => {
+            if (!included) {
+                db.updateOne(profile, { _id: user }, { $push: { 'FollowData.following': { id: result._id, username: result.username } } }, () => {
 
                 })
-                db.updateOne(profile, {_id : result}, {$push : {'FollowData.followers' : {id : user, username : name}}}, () => {
+                db.updateOne(profile, { _id: result }, { $push: { 'FollowData.followers': { id: user, username: name } } }, () => {})
+            } else {
+                db.updateOne(profile, { _id: user }, { $pull: { 'FollowData.following': { id: result._id, username: result.username } } }, () => {
+
                 })
-            }
-            else {
-                db.updateOne(profile, {_id : user}, {$pull : {'FollowData.following' : {id : result._id, username : result.username}}}, () => {
-                  
-                })
-                db.updateOne(profile, {_id : result}, {$pull : {'FollowData.followers' : {id : user, username : name}}}, () => {
-                
+                db.updateOne(profile, { _id: result }, { $pull: { 'FollowData.followers': { id: user, username: name } } }, () => {
+
                 })
             }
         })

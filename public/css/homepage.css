@@ -132,7 +132,7 @@ body {
     top: 50%;
     left: 50%;
     width: 849px;
-    height: 572px;
+    height: 300px;
     transform: translate(-50%, -50%) scale(0);
     transition: all 300ms ease-in-out;
     background-color: #1F2833;
@@ -168,14 +168,19 @@ body {
     width: 814px;
     height: 89px;
     left: 18px;
-    top: 419px;
+    top: 107px;
     background: white;
+}
+#imageIn{
+    position: absolute;
+    left: 18px;
+    top: 45px;
 }
 
 #ConfirmUpload {
     position: absolute;
     left: 196px;
-    top: 530px;
+    top: 225px;
     background-color: #66FCF1;
     border-radius: 35px;
     width: 117px;
@@ -185,7 +190,7 @@ body {
 #Cancel {
     position: absolute;
     left: 513px;
-    top: 530px;
+    top: 225px;
     background-color: #66FCF1;
     border-radius: 35px;
     width: 117px;
