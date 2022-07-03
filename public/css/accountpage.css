@@ -704,3 +704,28 @@ a {
     color: #1F2833;
     text-decoration: none;
 }
+
+.dropdown {
+    text-align: center;
+    display: none;
+    position: absolute;
+}
+
+.searchresult {
+    background-color: rgba(31, 40, 51, 1);
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    width: 16vw;
+    left: 41vw;
+    top: 39px;
+    height: max-content;
+    border: none;
+    position: relative;
+    z-index: 11;
+    display: none;
+}
+
+.visible {
+    display: block;
+}

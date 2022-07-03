@@ -4,6 +4,8 @@ $(document).ready(function() {
 
     
     
+
+    
     // Comment Functionality
     $(".comment-button").on("click", function () {
         var comBtn = $(this);
@@ -319,7 +321,7 @@ $(document).ready(function() {
 
     //followinglist functionality
     
-    $(".followingName").click(function() {
+    $(".followingName, .searchresult").click(function() {
         var username = $(this).text();
         var sessionUser = $('.sessionuser').attr('id');
         console.log("/VisitAccount/"+username)
@@ -408,5 +410,29 @@ $(document).ready(function() {
         }
        
     });
+
+    //Searchbar Functions
+    $(".searchbar").keyup(function() {
+
+        // show or hide the search values
+        var sb = $(".search");
+        var val = sb.val();
+        var dropdown = $(".dropdown")   
+        var sr = document.querySelectorAll(".searchresult");
+
+        sr.forEach(user => {
+            var test = user.textContent.toLowerCase().includes(val.toLowerCase());
+            user.classList.toggle("visible", test);
+        })
+    
+        if(val == "") {
+            dropdown.css("display", "none")
+        }
+        else
+            dropdown.css("display", "block")
+    })
+
+   
+    //End of Searchbar Functions
 
 })

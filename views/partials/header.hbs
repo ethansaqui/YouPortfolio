@@ -1,10 +1,15 @@
-
 <nav class="top-page">
     <div class="searchbar">
-        <form>
-            <input type="search" placeholder="Search">
+        <form class="searchform">
+            <input class="search "type="search" placeholder="Search User">
         </form>
+        <div class="dropdown">
+            {{#each users}}
+                <div class="searchresult">{{username}}</div>
+            {{/each}}
+        </div>
     </div>
+    
         <h1 id="YouPortfolio">
           <a href="/home"><span id="You">You</span><span id="Portfolio">Portfolio</span>.</a>  
         </h1>

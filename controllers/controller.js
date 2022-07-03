@@ -71,19 +71,22 @@ const controller = {
         db.findMany(Post, {artist:username}, 'img caption', function(result){
             Projects = result;
             db.findOne(profile, {username: username}, projection, function(result){
-                var data = {
-                    username: result.username,
-                    CoverPhoto: result.CoverPhoto,
-                    ProfileImage: result.ProfileImage,
-                    Bio: result.Bio,
-                    FollowData: result.FollowData,
-                    userworks: Projects
-                }
-                res.render('accountpage', data);
+                db.findMany(profile, {}, "username ProfileImage", function(users) {
+                    var data = {
+                        username: result.username,
+                        CoverPhoto: result.CoverPhoto,
+                        ProfileImage: result.ProfileImage,
+                        Bio: result.Bio,
+                        FollowData: result.FollowData,
+                        userworks: Projects,
+                        users: users
+                    }
+                    res.render('accountpage', data);
+                })
+                
             });
         });
     },
-
     visitAccount: function(req,res){
         var username = req.params.id;
         var VisitorName = req.session.name;
@@ -94,7 +97,8 @@ const controller = {
             db.findOne(profile, {username: VisitorName}, 'username ProfileImage', function(result){
                 Visitor = result.ProfileImage;
                 db.findOne(profile, {username: username}, projection, function(result){
-                    var data = {
+                    db.findMany(profile, {}, "username ProfileImage", function(users) {
+                        var data = {
                         ProfileImage: Visitor,
                         username: result.username,
                         CoverPhoto: result.CoverPhoto,
@@ -102,9 +106,12 @@ const controller = {
                         Bio: result.Bio,
                         FollowData: result.FollowData,
                         visitworks: Projects,
-                        visitor: req.session.user
-                    }
-                    res.render('visitaccount', data);
+                        visitor: req.session.user,
+                        users: users
+                        }
+                        res.render('visitaccount', data);
+                    })
+                    
                 });
             });
         });
@@ -302,7 +309,6 @@ const controller = {
             res.redirect('/account');
         })
     },
-
     changeCaption: function(req,res){
         var id = req.query.Id;
         var Caption = req.query.Caption;
@@ -310,7 +316,6 @@ const controller = {
             res.redirect('/account');
         })
     },
-
     DeletePost: function(req,res){
         console.log(req.query.id);
         var id = req.query.id;
@@ -318,7 +323,6 @@ const controller = {
             res.redirect('/account');
         });
     },
-
     logoutUser: function(req, res) {
         if (req.session) {
             req.session.destroy(() => {
@@ -329,7 +333,6 @@ const controller = {
             res.render('login');
         }
     },
-
     updateLikes: function(req, res) {
         var post = req.body.post;
         var likes = req.body.likes;
@@ -351,7 +354,6 @@ const controller = {
             
         })
     },
-    
     followUser: function(req, res) {
         var user = req.session.user;
         var name = req.session.name;
@@ -379,7 +381,7 @@ const controller = {
                 })
             }
         })
-    }
+    },
 }
 
 module.exports = controller;

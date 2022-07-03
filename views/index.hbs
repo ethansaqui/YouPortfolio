@@ -13,7 +13,7 @@
 
     <body>
         <div class="sessionuser" id={{posts.session.username}}></div>
-        {{> header posts.session}}
+        {{> header (passSessionUsers posts.session.ProfileImage posts.user)}}
         <!-- Upload Pop Up-->
         
         <!-- End of Upload Pop Up-->

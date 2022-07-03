@@ -49,6 +49,10 @@ hbs.registerHelper('strcmp', function(x,y) {
     return x == y;
 })
 
+hbs.registerHelper('passSessionUsers', function(x, y) {
+    return {ProfileImage: x, users: y}
+})
+
 hbs.registerHelper('combineComments', function(x, y) {
     return {comment: x, comments: y}
 })
