@@ -107,6 +107,7 @@ const controller = {
                         FollowData: result.FollowData,
                         visitworks: Projects,
                         visitor: req.session.user,
+                        session: req.session.name,
                         users: users
                         }
                         res.render('visitaccount', data);

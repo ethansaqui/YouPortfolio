@@ -2,10 +2,6 @@ $(document).ready(function() {
     // Comment Functions
     var user = $(".sessionuser").attr('id');
 
-    
-    
-
-    
     // Comment Functionality
     $(".comment-button").on("click", function () {
         var comBtn = $(this);
