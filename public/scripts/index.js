@@ -10,7 +10,6 @@ $(document).ready(function() {
     $(".comment-button").on("click", function () {
         var comBtn = $(this);
         var postID = comBtn.parents(".comment-box").siblings(".image-container").children(".post-image").attr('id');
-        console.log("post id" + postID)
         var commentDOM = $("<form id=\"comment-form\"></form>").html(`
             <button id="cancel-comment" type="button"> &times; </button>
             <input type="text" id="comment" name="comment">
@@ -29,7 +28,6 @@ $(document).ready(function() {
 
     $(".comment-container").on("click", "#cancel-comment", function() {
         $(this).parent().siblings(".comment-button").css("display", "block");
-        console.log($(this).parent().siblings(".comment-button"));
         $(this).parent("#comment-form").remove();
     })
 

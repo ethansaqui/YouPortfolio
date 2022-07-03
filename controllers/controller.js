@@ -124,8 +124,6 @@ const controller = {
         if (errors.isEmpty()) {
             const username = req.body.username;
             var password = req.body.password;
-            console.log(username);
-            console.log(password);
             db.findOne(profile, { username: username }, projection, async(result) => {
                 console.log(result);
                 if (result != null) {
@@ -261,9 +259,7 @@ const controller = {
         })
     },
     editComment: function(req, res) {
-        console.log(req)
         db.updateOne(Comment, {_id:req.body.commentID}, {content: req.body.edit}, function() {
-            console.log("comment updated");
             res.sendStatus(200)
         })
     },
@@ -290,14 +286,12 @@ const controller = {
     },
     changeCover: function(req,res,next){
         var data = fs.readFileSync(path.join(__dirname + `/../public/images/` + req.file.filename))
-        console.log(req.file.filename);
         var username = req.session.name
         var CoverPhoto = {
             data: data,
             contentType: 'image/png'
         }
         db.updateOne(profile, {username: username}, {CoverPhoto: CoverPhoto},function(){
-            console.log("Update Done");
             res.redirect('/account');
         })
         
@@ -317,7 +311,6 @@ const controller = {
         })
     },
     DeletePost: function(req,res){
-        console.log(req.query.id);
         var id = req.query.id;
         db.deleteOne(Post, {_id:id}, function(){
             res.redirect('/account');
