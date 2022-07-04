@@ -222,23 +222,20 @@ const controller = {
         }
     },
     uploadPost: function(req, res, next) {
-        if (req.body.captionIn != "" && typeof req.file !== 'undefined') {
-            var data = fs.readFileSync(path.join(__dirname + `/../public/postImages/` + req.file.filename))
-            var tempPost = {
-                caption: req.body.captionIn,
-                img: {
-                    data: data,
-                    contentType: 'image/png'
-                },
-                artist: req.session.name,
-                likes: 0,
-                artistPicture: "no-pic"
-            }
-            db.insertOne(Post, tempPost, (err) => {
-                res.sendStatus(200)
-            })
+        var data = fs.readFileSync(path.join(__dirname + `/../public/postImages/` + req.file.filename))
+        var tempPost = {
+            caption: req.body.captionIn,
+            img: {
+                data: data,
+                contentType: 'image/png'
+            },
+            artist: req.session.name,
+            likes: 0,
+            artistPicture: "no-pic"
         }
+        db.insertOne(Post, tempPost, (err) => {
 
+        })
     },
     uploadComment: function(req, res) {
         var tempComment = {
@@ -259,7 +256,7 @@ const controller = {
             username: req.session.name,
             content: req.body.reply
         }
-        if(!req.body.comment.match(/^ *$/))
+
             db.insertOne(Comment, tempComment, (err) => {
                 res.sendStatus(200)
             })

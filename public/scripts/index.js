@@ -92,7 +92,7 @@ $(document).ready(function() {
             console.log(status)
         })
     })
-    console.log("this ran")
+    
     // Hide Show Replies for comments without replies
     $(".comment").each(function() {
         let c = $(this);
@@ -223,29 +223,6 @@ $(document).ready(function() {
         if (img.width > img.height) {
             $(this).width = img.height;
             
-        }
-    });
-
-    $("#ConfirmUpload").click(() => {
-        console.log("TEST")
-        var formData =  new FormData($("#uploadForm").get(0));
-        if($("#captionIn").val() != "" && $("#imageIn").val() != "") {
-            $.ajax({
-                type: "POST",
-                url: "/uploadPost",
-                data: formData,
-                processData: false,
-                contentType: false,
-                success: function(r){
-                    location.href='/home'
-                },
-                error: function (e) {
-                    console.log("some error", e);
-                }
-            });
-        }
-        else {
-            console.log("empty")
         }
     });
 

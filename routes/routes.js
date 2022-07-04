@@ -27,7 +27,7 @@ var ProfileUpload = multer({storage: Profilestorage});
 
 app.post('/register', registerValidation, controller.registerUser);
 app.post('/login', loginValidation, controller.loginUser);
-app.post('/uploadpost', upload.single('imageIn') , controller.uploadPost);
+app.post('/upload', upload.single('imageIn') , controller.uploadPost);
 app.post('/editcomment', controller.editComment);
 app.post('/deletecomment', controller.deleteComment);
 app.post('/ChangePhoto', ProfileUpload.single('ProfileImage'), controller.changePhoto);
