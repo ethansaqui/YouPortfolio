@@ -46,6 +46,7 @@ app.get(`/home`, controller.getHomepage);
 app.get('/register', controller.getRegister);
 app.get('/login', controller.getLogin);
 app.get('/logout', controller.logoutUser);
+app.get('/about', controller.getAbout);
 
 //app.get('/logout', isPrivate, controller.logoutUser);
 

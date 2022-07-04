@@ -1,0 +1,20 @@
+.npmpacks, .authors{
+    font: 20px Poppins;
+    color: white;
+    text-align: center;
+    background-color: rgba(31, 40, 51, 1);
+}
+
+ul {
+    list-style-type: none;
+}
+
+.aboutpage {
+    background-color: rgba(31, 40, 51, 1);
+}
+
+a {
+    font: 20px Poppins;
+    color: white;
+    text-decoration: none;
+}

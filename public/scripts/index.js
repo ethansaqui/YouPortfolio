@@ -27,16 +27,17 @@ $(document).ready(function() {
         $(this).parent("#comment-form").remove();
     })
 
-    $(".comment-container").on("click", "#submit-comment", function() {
+    $(".comment-container").on("click", "#submit-comment", function(e) {
+        
         $(".comment-container").off("click")
         var comment = $("#comment").val();
         var postID = $("#postID").val();
-
+        
         var tempComment = {
             comment : comment,
             postID : postID
         }
-
+            
         $.post('/uploadcomment', tempComment, (data, status) => {
             console.log(status)
         })
@@ -86,6 +87,7 @@ $(document).ready(function() {
             postID: postID,
             parentCommentId : parentCommentId
         }
+    
         $.post('/uploadreply', tempComment, (data, status) => {
             console.log(status)
         })
@@ -175,6 +177,7 @@ $(document).ready(function() {
             edit: edit,
             commentID: commentID,
         }
+    
         $.post('/editcomment', tempComment, (data, status) => {
             console.log(status)
         })
@@ -234,7 +237,7 @@ $(document).ready(function() {
                 processData: false,
                 contentType: false,
                 success: function(r){
-                    console.log("result",r)
+                    location.href='/home'
                 },
                 error: function (e) {
                     console.log("some error", e);

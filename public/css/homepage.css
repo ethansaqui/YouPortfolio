@@ -156,7 +156,6 @@ body {
     top: 15px;
     background: white;
 }
-
 .UploadBox img {
     width: 100%;
     height: 100%;
@@ -691,7 +690,7 @@ a:hover {
     background-color: rgba(31, 40, 51, 1);
     color: white;
     padding: 16px;
-    font-size: 16px;
+    font: 16px Poppins;
     width: 16vw;
     left: 41vw;
     top: 39px;
@@ -705,3 +704,12 @@ a:hover {
 .visible {
     display: block;
 }
+
+.about {
+    text-align: center;
+    font: 0.5vw Poppins;
+    position: absolute;
+    bottom: 70px;
+    width: 100%;
+}
+

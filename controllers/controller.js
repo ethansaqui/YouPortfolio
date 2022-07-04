@@ -235,22 +235,22 @@ const controller = {
                 artistPicture: "no-pic"
             }
             db.insertOne(Post, tempPost, (err) => {
-
+                res.sendStatus(200)
             })
         }
 
     },
     uploadComment: function(req, res) {
-
         var tempComment = {
             postId: req.body.postID,
             parentCommentId: null,
             username: req.session.name,
             content: req.body.comment
         }
-        db.insertOne(Comment, tempComment, (err) => {
-            res.sendStatus(200)
-        })
+        if(!req.body.comment.match(/^ *$/))
+            db.insertOne(Comment, tempComment, (err) => {
+                res.sendStatus(200)
+            })
     },
     uploadReply: function(req, res) {
         var tempComment = {
@@ -259,14 +259,16 @@ const controller = {
             username: req.session.name,
             content: req.body.reply
         }
-        db.insertOne(Comment, tempComment, (err) => {
-            res.sendStatus(200)
-        })
+        if(!req.body.comment.match(/^ *$/))
+            db.insertOne(Comment, tempComment, (err) => {
+                res.sendStatus(200)
+            })
     },
     editComment: function(req, res) {
-        db.updateOne(Comment, { _id: req.body.commentID }, { content: req.body.edit }, function() {
-            res.sendStatus(200)
-        })
+        if(!req.body.edit.match(/^ *$/))
+            db.updateOne(Comment, { _id: req.body.commentID }, { content: req.body.edit }, function() {
+                res.sendStatus(200)
+            })
     },
     deleteComment: function(req, res) {
         db.deleteOne(Comment, { _id: req.body.commentID }, function() {
@@ -377,6 +379,9 @@ const controller = {
             }
         })
     },
+    getAbout: function(req, res) {
+        res.render('about')
+    }
 }
 
 module.exports = controller;
