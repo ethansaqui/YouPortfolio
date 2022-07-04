@@ -234,7 +234,7 @@ const controller = {
             artistPicture: "no-pic"
         }
         db.insertOne(Post, tempPost, (err) => {
-
+            res.redirect("/home");
         })
     },
     uploadComment: function(req, res) {
