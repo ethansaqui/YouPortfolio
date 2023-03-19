@@ -1,7 +1,8 @@
 # YouPortfolio
- 
-To run locally, run: node YouPortfolio.js
+A basic websites that supports creating accounts, posting images, infinitely nested comments, and account customization. In partial completion of App Development (CCAPDEV) course.
 
-with the directory selected. By default it launches on port 3000 with the database stored in mongodb://localhost:27017/youPortfolioDB
+To run locally 
 
-Register, log in, and enjoy posting, liking and following other accounts you make!
+```node YouPortfolio.js```
+
+Launches on port 3000 with the database stored in mongodb://localhost:27017/youPortfolioDB
